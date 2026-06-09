@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanmay Shelar | Portfolio</title>
+    <meta name="description" content="Tanmay Shelar – AI & Data Science student turning ideas into impact. Explore my projects, skills, and journey.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="scroll-locked">
+
+    <!-- ===== CINEMATIC INTRO OVERLAY ===== -->
+    <div id="intro-overlay">
+        <canvas id="intro-particles"></canvas>
+        <div class="intro-terminal">
+            <div class="terminal-topbar">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
+                <span class="terminal-title">tanmay@portfolio ~ </span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line" id="terminal-cmd">
+                    <span class="terminal-prompt">❯ </span><span id="typed-cmd"></span><span class="term-cursor" id="term-cursor">█</span>
+                </div>
+                <div class="terminal-output" id="terminal-output"></div>
+            </div>
+        </div>
+        <div class="intro-scroll-hint" id="intro-scroll-hint">
+            <span>scroll to execute</span>
+            <div class="scroll-hint-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+    </div>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <h2 class="loader-logo">TS</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="logo">TS</span>
+        </div>
+        <div class="nav-center">
+            <a href="mailto:shelartanmay75@gmail.com" class="email-link">shelartanmay75@gmail.com</a>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- ===== HOME SECTION ===== -->
+        <section id="home" class="section hero-section">
+            <div class="hero-inner">
+                <!-- Award / badge row -->
+                <div class="hero-award">
+                    <i class="fa-solid fa-award"></i>
+                    B.Tech AI &amp; Data Science &bull; VESIT 2029
+                </div>
+
+                <!-- Name -->
+                <h2 class="hero-title-row">Hello, I'm Tanmay</h2>
+                <h1 class="hero-subtitle-row">Turning Ideas Into Impact</h1>
+
+                <!-- Photo + floating tags -->
+                <div class="hero-photo-area">
+                    <!-- Left tags -->
+                    <div class="float-tag tag-ai"><i class="fa-brands fa-python" style="color:#aaff00;margin-right:6px"></i>AI / ML</div>
+                    <div class="float-tag tag-ds"><i class="fa-solid fa-chart-simple" style="color:#aaff00;margin-right:6px"></i>Data Science</div>
+
+                    <!-- Photo -->
+                    <div class="hero-photo-wrap">
+                        <img src="tanmay_hero.png" alt="Tanmay Shelar" class="hero-photo-img" onerror="this.src='profile.jpg'">
+                    </div>
+
+                    <!-- Right tags -->
+                    <div class="float-tag tag-web"><i class="fa-brands fa-html5" style="color:#aaff00;margin-right:6px"></i>Web Dev</div>
+                    <div class="float-tag tag-ml"><i class="fa-solid fa-code" style="color:#aaff00;margin-right:6px"></i>Problem Solving</div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-cta-row">
+                    <a href="#contact" class="btn-cta-primary" id="hero-connect-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Let's Connect
+                    </a>
+                    <a href="#projects" class="btn-cta-secondary" id="hero-work-btn">
+                        <i class="fa-solid fa-eye"></i> View My Work
+                    </a>
+                    <a href="#about" class="btn-cta-secondary" id="hero-about-btn">
+                        <i class="fa-solid fa-user"></i> About Me
+                    </a>
+                    <a href="#journey" class="btn-cta-secondary" id="hero-journey-btn">
+                        <i class="fa-solid fa-map"></i> My Journey
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ME SECTION ===== -->
+        <!-- Terminal build header for About -->
+        <div class="section-terminal-header" id="about-terminal-header">
+            <span class="sth-prompt">❯ </span><span class="sth-text" id="about-sth-text"></span>
+            <span class="sth-check" id="about-sth-check"></span>
+        </div>
+
+        <section id="about" class="section about-futuristic-section section-hidden">
+            <!-- Background Elements -->
+            <div class="about-bg-grid"></div>
+            <div class="about-bg-blob blob-purple"></div>
+            <div class="about-bg-blob blob-blue"></div>
+            <div class="about-light-orb"></div>
+
+            <div class="about-header text-center">
+                <h2>About <span class="highlight">Me</span></h2>
+                <p class="section-subtitle">Passionate about technology, innovation, and building solutions that make an impact.</p>
+            </div>
+
+            <div class="about-card-container">
+                <!-- Interactive Profile Card -->
+                <div class="profile-glass-card">
+                    <div class="card-inner-glow"></div>
+                    
+                    <!-- Left: Profile Image area -->
+                    <div class="profile-image-container">
+                        <div class="neon-orbit-ring"></div>
+                        <div class="profile-img-frame">
+                            <img src="profile.jpg" alt="Tanmay Shelar" class="profile-img" onerror="this.src='https://placehold.co/400x500/1a1a2e/ffffff?text=TS'">
+                        </div>
+                    </div>
+
+                    <!-- Right: Profile Info -->
+                    <div class="profile-info-content">
+                        <div class="info-header">
+                            <h3 class="profile-name"><i class="fa-solid fa-user-astronaut name-icon"></i> Tanmay Shelar</h3>
+                            <span class="age-pill">Age: 19</span>
+                        </div>
+                        
+                        <div class="profile-info-grid">
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div class="info-text">
+                                    <h4>Education &amp; Role</h4>
+                                    <p>Second year B.Tech student pursuing Artificial Intelligence &amp; Data Science</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                <div class="info-text">
+                                    <h4>Skills &amp; Tech Stack</h4>
+                                    <p>Java | Python | C++ | Web Development</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-rocket"></i></div>
+                                <div class="info-text">
+                                    <h4>Interests</h4>
+                                    <p>AI, Software Engineering &amp; Entrepreneurship</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="info-text">
+                                    <h4>Location</h4>
+                                    <p>Mumbai, India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub Stat Cards -->
+                <div class="about-sub-stats-grid">
+                    <div class="sub-stat-card">
+                        <div class="sub-stat-glow"></div>
+                        <div class="sub-stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+                        <h4 class="sub-stat-val">5+</h4>
+                        <p class="sub-stat-lbl">Projects Built</p>
+                    </div>
+
+                    <div class="sub-stat-card">
+                        <div class="sub-stat-glow"></div>
+                        <div class="sub-stat-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h4 class="sub-stat-val">7+</h4>
+                        <p class="sub-stat-lbl">Technologies Learned</p>
+                    </div>
+
+                    <div class="sub-stat-card">
+                        <div class="sub-stat-glow"></div>
+                        <div class="sub-stat-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                        <h4 class="sub-stat-val">Infinite</h4>
+                        <p class="sub-stat-lbl">Coffee Consumed</p>
+                    </div>
+
+                    <div class="sub-stat-card">
+                        <div class="sub-stat-glow"></div>
+                        <div class="sub-stat-icon"><i class="fa-solid fa-rocket"></i></div>
+                        <h4 class="sub-stat-val">Always Growing</h4>
+                        <p class="sub-stat-lbl">Ideas Under Development</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS SECTION ===== -->
+        <!-- Terminal build header for Skills -->
+        <div class="section-terminal-header" id="skills-terminal-header">
+            <span class="sth-prompt">❯ </span><span class="sth-text" id="skills-sth-text"></span>
+            <span class="sth-check" id="skills-sth-check"></span>
+        </div>
+
+        <section id="skills" class="section cosmic-section section-hidden">
+            <div class="starfield" id="starfield"></div>
+            
+            <div class="skills-header text-center">
+                <h2>My <span class="highlight">Tech Universe</span></h2>
+                <p class="section-subtitle">Click on a planet to explore my experience, projects, and technologies used.</p>
+            </div>
+            
+            <div class="universe-container">
+                <div class="galaxy-viewport">
+                    <!-- Central Sun / Core -->
+                    <div class="galactic-core">
+                        <div class="core-glow"></div>
+                        <div class="core-text">
+                            <span class="core-title">My Tech</span>
+                            <span class="core-subtitle">Universe</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Concentric Orbits and Planets (scaled up 30%) -->
+                    <!-- Orbit 1: Java -->
+                    <div class="orbit-path" id="orbit-java" style="--orbit-size: 250px;">
+                        <div class="planet skill-planet" data-skill="java" style="--planet-color: #f89820; --orbit-speed: 25s; --planet-size: 54px;">
+                            <div class="planet-body"><i class="fa-brands fa-java"></i></div>
+                            <span class="planet-tooltip">Java</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit 2: Python -->
+                    <div class="orbit-path" id="orbit-python" style="--orbit-size: 365px;">
+                        <div class="planet skill-planet" data-skill="python" style="--planet-color: #3776ab; --orbit-speed: 35s; --planet-size: 50px;">
+                            <div class="planet-body"><i class="fa-brands fa-python"></i></div>
+                            <span class="planet-tooltip">Python</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit 3: C++ -->
+                    <div class="orbit-path" id="orbit-cpp" style="--orbit-size: 480px;">
+                        <div class="planet skill-planet" data-skill="cpp" style="--planet-color: #00599c; --orbit-speed: 45s; --planet-size: 46px;">
+                            <div class="planet-body"><i class="fa-solid fa-code"></i></div>
+                            <span class="planet-tooltip">C++</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit 4: HTML/CSS -->
+                    <div class="orbit-path" id="orbit-htmlcss" style="--orbit-size: 598px;">
+                        <div class="planet skill-planet" data-skill="htmlcss" style="--planet-color: #e34f26; --orbit-speed: 55s; --planet-size: 52px;">
+                            <div class="planet-body"><i class="fa-brands fa-html5"></i></div>
+                            <span class="planet-tooltip">HTML &amp; CSS</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit 5: JavaScript -->
+                    <div class="orbit-path" id="orbit-js" style="--orbit-size: 715px;">
+                        <div class="planet skill-planet" data-skill="javascript" style="--planet-color: #f7df1e; --orbit-speed: 65s; --planet-size: 48px;">
+                            <div class="planet-body"><i class="fa-brands fa-js"></i></div>
+                            <span class="planet-tooltip">JavaScript</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Orbit 6: Git & GitHub -->
+                    <div class="orbit-path" id="orbit-git" style="--orbit-size: 832px;">
+                        <div class="planet skill-planet" data-skill="git" style="--planet-color: #f05032; --orbit-speed: 75s; --planet-size: 46px;">
+                            <div class="planet-body"><i class="fa-brands fa-git-alt"></i></div>
+                            <span class="planet-tooltip">Git &amp; GitHub</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Information Panel (Futuristic Glassmorphism Drawer) -->
+                <div class="galaxy-info-panel" id="galaxy-info-panel">
+                    <button class="panel-close-btn" id="panel-close-btn"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <div class="panel-icon-wrap" id="panel-skill-icon-wrap">
+                                <i class="fa-brands fa-java" id="panel-skill-icon"></i>
+                            </div>
+                            <h3 class="panel-title" id="panel-skill-name">Java</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-section">
+                                <h4 class="panel-section-title"><i class="fa-solid fa-graduation-cap"></i> Experience</h4>
+                                <p id="panel-skill-experience">2+ years of learning and building projects</p>
+                            </div>
+                            <div class="panel-section">
+                                <h4 class="panel-section-title"><i class="fa-solid fa-laptop-code"></i> Projects Built</h4>
+                                <ul id="panel-skill-projects">
+                                    <li>Restaurant Ordering Website</li>
+                                    <li>Portfolio Website</li>
+                                    <li>Arduino Automation Projects</li>
+                                </ul>
+                            </div>
+                            <div class="panel-section">
+                                <h4 class="panel-section-title"><i class="fa-solid fa-gears"></i> Key Concepts / Libraries</h4>
+                                <div class="panel-tech-badges" id="panel-skill-tech">
+                                    <span>OOP</span>
+                                    <span>Collections</span>
+                                    <span>File Handling</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- ===== MY JOURNEY SECTION ===== -->
+        <section id="journey" class="section">
+            <div class="journey-container">
+                <div class="journey-left">
+                    <div class="treasure-map" id="treasure-map">
+                        <svg class="map-path" viewBox="0 0 400 900" preserveAspectRatio="none">
+                            <!-- Dashed Path -->
+                            <path d="M 80 80 Q 200 160 200 260 T 130 420 T 230 580 T 290 760 T 310 860" class="dashed-path" />
+                        </svg>
+                        
+                        <!-- Island: 10th Grade -->
+                        <div class="island" id="island-10th" style="top: 9%; left: 20%;">
+                            <div class="island-circle"><i class="fa-solid fa-school"></i></div>
+                            <span class="island-label">Completed 10th (2023)</span>
+                        </div>
+
+                        <!-- Island: 12th Grade -->
+                        <div class="island" id="island-12th" style="top: 32%; left: 55%;">
+                            <div class="island-circle"><i class="fa-solid fa-book"></i></div>
+                            <span class="island-label">Completed 12th (2025)</span>
+                        </div>
+
+                        <!-- Island: College -->
+                        <div class="island" id="island-college" style="top: 58%; left: 28%;">
+                            <div class="island-circle"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="island-label">VESIT College (2025)</span>
+                            <div class="sub-branch">
+                                <button class="btn-small" id="view-experiences-btn">View more experiences</button>
+                                <div class="hackathons-list" id="hackathons-list">
+                                    <div class="hackathon-card">
+                                        <h4>Hack-AI-Thon</h4>
+                                        <p>By AI Colegion</p>
+                                    </div>
+                                    <div class="hackathon-card">
+                                        <h4>Genesis Hackathon</h4>
+                                        <p>By Quest IT</p>
+                                    </div>
+                                    <div class="hackathon-card">
+                                        <h4>Invictus Hackathon</h4>
+                                        <p>By ISTE-VESIT</p>
+                                    </div>
+                                    <div class="hackathon-card">
+                                        <h4>Syrus Hackathon</h4>
+                                        <p>By CodeCell++</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Boat is animated via JS -->
+                        <div class="boat" id="map-boat">
+                            <i class="fa-solid fa-sailboat"></i>
+                        </div>
+
+                        <!-- Locked Islands -->
+                        <div class="island locked" style="top: 77%; left: 62%;">
+                            <div class="island-circle"><i class="fa-solid fa-lock"></i></div>
+                        </div>
+                        <div class="island locked" style="top: 92%; left: 73%;">
+                            <div class="island-circle"><i class="fa-solid fa-lock"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="journey-right">
+                    <h2 class="journey-title" id="journey-title">My Journey</h2>
+                    <div class="journey-details" id="journey-details">
+                        <p>Click on an island to view the journey details.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS SECTION ===== -->
+        <!-- Terminal build header for Projects -->
+        <div class="section-terminal-header" id="projects-terminal-header">
+            <span class="sth-prompt">❯ </span><span class="sth-text" id="projects-sth-text"></span>
+            <span class="sth-check" id="projects-sth-check"></span>
+        </div>
+
+        <section id="projects" class="section projects-carousel-section section-hidden">
+            <div class="projects-header text-center">
+                <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+                <p class="section-subtitle">A collection of projects I've built to solve real-world problems and improve my development skills.</p>
+            </div>
+            
+            <div class="carousel-container-wrapper">
+                <!-- Navigation Arrows -->
+                <button class="carousel-arrow prev-arrow" id="project-prev-btn" aria-label="Previous Project"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="projects-carousel" id="projects-carousel">
+                    <!-- Project Card 1: Restaurant Ordering Website -->
+                    <div class="project-carousel-card">
+                        <div class="project-card-image-wrap">
+                            <img src="restaurant_app.png" alt="Restaurant Ordering Website" class="project-card-image">
+                            <div class="project-card-badge status-live"><i class="fa-solid fa-circle-check"></i> Live</div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-meta">
+                                <span class="project-meta-item"><i class="fa-solid fa-calendar"></i> Oct 2024</span>
+                                <span class="project-meta-item"><i class="fa-solid fa-folder"></i> Web Dev</span>
+                            </div>
+                            <h3 class="project-card-title">Restaurant Ordering Website</h3>
+                            <p class="project-card-desc">A full-featured digital menu and order management system with live-cart tracking, responsive design, and intuitive admin interface.</p>
+                            <div class="project-features-badges">
+                                <span class="badge">Responsive</span>
+                                <span class="badge">UX Design</span>
+                                <span class="badge">Interactivity</span>
+                            </div>
+                            <div class="project-card-buttons">
+                                <a href="#" class="project-btn btn-live"><i class="fa-solid fa-laptop"></i> Live Demo</a>
+                                <a href="#" class="project-btn btn-repo"><i class="fa-brands fa-github"></i> Repository</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 2: Portfolio Website -->
+                    <div class="project-carousel-card">
+                        <div class="project-card-image-wrap">
+                            <img src="portfolio_v2.png" alt="Portfolio Website" class="project-card-image">
+                            <div class="project-card-badge status-live"><i class="fa-solid fa-circle-check"></i> Live</div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-meta">
+                                <span class="project-meta-item"><i class="fa-solid fa-calendar"></i> Jun 2026</span>
+                                <span class="project-meta-item"><i class="fa-solid fa-folder"></i> Interactive Web</span>
+                            </div>
+                            <h3 class="project-card-title">Interactive Portfolio</h3>
+                            <p class="project-card-desc">A futuristic space-themed developer portfolio containing smooth snap-scrolling, orbital skills visualization, and custom interactions.</p>
+                            <div class="project-features-badges">
+                                <span class="badge">Space Theme</span>
+                                <span class="badge">Glassmorphism</span>
+                                <span class="badge">Orbits CSS</span>
+                            </div>
+                            <div class="project-card-buttons">
+                                <a href="#" class="project-btn btn-live"><i class="fa-solid fa-laptop"></i> Live Demo</a>
+                                <a href="#" class="project-btn btn-repo"><i class="fa-brands fa-github"></i> Repository</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 3: Arduino Automation Projects -->
+                    <div class="project-carousel-card">
+                        <div class="project-card-image-wrap">
+                            <img src="arduino_automation.png" alt="Arduino Automation Projects" class="project-card-image">
+                            <div class="project-card-badge status-progress"><i class="fa-solid fa-spinner"></i> In Progress</div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-meta">
+                                <span class="project-meta-item"><i class="fa-solid fa-calendar"></i> Ongoing</span>
+                                <span class="project-meta-item"><i class="fa-solid fa-folder"></i> IoT &amp; Hardware</span>
+                            </div>
+                            <h3 class="project-card-title">Arduino Automation</h3>
+                            <p class="project-card-desc">Smart home IoT integration including temperature monitoring, lighting relays, and serial communication dashboards for local networks.</p>
+                            <div class="project-features-badges">
+                                <span class="badge">Arduino</span>
+                                <span class="badge">Sensors</span>
+                                <span class="badge">C++ Code</span>
+                            </div>
+                            <div class="project-card-buttons">
+                                <a href="#" class="project-btn btn-live"><i class="fa-solid fa-laptop"></i> Dashboard</a>
+                                <a href="#" class="project-btn btn-repo"><i class="fa-brands fa-github"></i> Repository</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Card 4: AI Trend Analysis -->
+                    <div class="project-carousel-card">
+                        <div class="project-card-image-wrap">
+                            <img src="portfolio_v2.png" alt="AI Trend Analysis" class="project-card-image" style="filter: hue-rotate(140deg)">
+                            <div class="project-card-badge status-progress"><i class="fa-solid fa-spinner"></i> In Progress</div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-meta">
+                                <span class="project-meta-item"><i class="fa-solid fa-calendar"></i> Mar 2026</span>
+                                <span class="project-meta-item"><i class="fa-solid fa-folder"></i> Python AI</span>
+                            </div>
+                            <h3 class="project-card-title">AI &amp; Data Visualizer</h3>
+                            <p class="project-card-desc">A Python-based AI trends visualization engine that maps regression curves, clusters data points, and exports interactive web dashboards.</p>
+                            <div class="project-features-badges">
+                                <span class="badge">Python ML</span>
+                                <span class="badge">Data Clust</span>
+                                <span class="badge">API Stream</span>
+                            </div>
+                            <div class="project-card-buttons">
+                                <a href="#" class="project-btn btn-live"><i class="fa-solid fa-laptop"></i> Analytics</a>
+                                <a href="#" class="project-btn btn-repo"><i class="fa-brands fa-github"></i> Repository</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-arrow next-arrow" id="project-next-btn" aria-label="Next Project"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT / LET'S CONNECT SECTION ===== -->
+        <section id="contact" class="section">
+            <p class="contact-eyebrow">STAYING PROUD.</p>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-subtitle">Reach out through any of the platforms below — I'd love to hear from you!</p>
+
+            <div class="contact-cards-grid">
+                <!-- Resume (Premium Download Card) -->
+                <a href="Tanmay CV.pdf" download class="contact-card resume-premium-card" id="contact-resume">
+                    <div class="resume-card-glow"></div>
+                    <div class="contact-card-icon icon-resume">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </div>
+                    <span class="contact-card-name">Resume</span>
+                    <span class="contact-card-desc">Download my latest CV</span>
+                    <span class="resume-download-btn" id="btn-resume">
+                        <i class="fa-solid fa-arrow-down"></i> Download
+                    </span>
+                </a>
+
+                <!-- LinkedIn (Featured) -->
+                <a href="https://www.linkedin.com/in/tanmay-shelar-517424399/" target="_blank" class="contact-card featured" id="contact-linkedin">
+                    <div class="contact-card-icon icon-linkedin">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <span class="contact-card-name">LinkedIn</span>
+                    <span class="contact-card-desc">Connect with me professionally</span>
+                    <span class="contact-card-btn" id="btn-linkedin">CONNECT →</span>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:shelartanmay75@gmail.com" class="contact-card" id="contact-email">
+                    <div class="contact-card-icon icon-email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <span class="contact-card-name">Email</span>
+                    <span class="contact-card-desc">shelartanmay75@gmail.com</span>
+                    <span class="contact-card-btn" id="btn-email">MESSAGE →</span>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@tanmayshelar_4" target="_blank" class="contact-card" id="contact-youtube">
+                    <div class="contact-card-icon icon-youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <span class="contact-card-name">YouTube</span>
+                    <span class="contact-card-desc">Watch my videos &amp; projects</span>
+                    <span class="contact-card-btn" id="btn-youtube">WATCH →</span>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/tanmay_shelar___?igsh=MXQ3bmg5aTdrMnQ3OA==" target="_blank" class="contact-card" id="contact-instagram">
+                    <div class="contact-card-icon icon-instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <span class="contact-card-name">Instagram</span>
+                    <span class="contact-card-desc">Follow my daily updates</span>
+                    <span class="contact-card-btn" id="btn-instagram">FOLLOW →</span>
+                </a>
+            </div>
+
+            <div class="contact-footer-icon">🔥</div>
+        </section>
+        <!-- ===== FINAL CINEMATIC SCENE ===== -->
+        <section id="final-scene">
+            <div class="final-particles"></div>
+            <div class="final-content">
+                <p class="final-tagline" id="final-tagline"></p>
+                <div class="final-cursor-wrap">
+                    <span class="final-blink-cursor">█</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
