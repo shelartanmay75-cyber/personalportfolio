@@ -70,46 +70,68 @@
         <!-- ===== HOME SECTION ===== -->
         <section id="home" class="section hero-section">
             <div class="hero-inner">
-                <!-- Award / badge row -->
-                <div class="hero-award">
-                    <i class="fa-solid fa-award"></i>
-                    B.Tech AI &amp; Data Science &bull; VESIT 2029
-                </div>
+                <div class="hero-bento-grid">
+                    <!-- Card 1: Main Introduction Card -->
+                    <div class="bento-card bento-intro-card">
+                        <div class="hero-award">
+                            <i class="fa-solid fa-award"></i>
+                            B.Tech AI &amp; Data Science &bull; VESIT 2029
+                        </div>
+                        <h2 class="hero-title-row">Hello, I'm Tanmay</h2>
+                        <h1 class="hero-subtitle-row">Turning Ideas Into Impact</h1>
+                        
+                        <p class="bento-intro-desc">
+                            Second year B.Tech student in Artificial Intelligence &amp; Data Science at VESIT. 
+                            Designing elegant software interfaces and parsing complex data models into impact-driven solutions.
+                        </p>
 
-                <!-- Name -->
-                <h2 class="hero-title-row">Hello, I'm Tanmay</h2>
-                <h1 class="hero-subtitle-row">Turning Ideas Into Impact</h1>
-
-                <!-- Photo + floating tags -->
-                <div class="hero-photo-area">
-                    <!-- Left tags -->
-                    <div class="float-tag tag-ai"><i class="fa-brands fa-python" style="color:#aaff00;margin-right:6px"></i>AI / ML</div>
-                    <div class="float-tag tag-ds"><i class="fa-solid fa-chart-simple" style="color:#aaff00;margin-right:6px"></i>Data Science</div>
-
-                    <!-- Photo -->
-                    <div class="hero-photo-wrap">
-                        <img src="tanmay_hero.png" alt="Tanmay Shelar" class="hero-photo-img" onerror="this.src='profile.jpg'">
+                        <div class="hero-cta-row">
+                            <a href="#contact" class="btn-cta-primary" id="hero-connect-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Let's Connect
+                            </a>
+                            <a href="#projects" class="btn-cta-secondary" id="hero-work-btn">
+                                <i class="fa-solid fa-eye"></i> View My Work
+                            </a>
+                        </div>
                     </div>
 
-                    <!-- Right tags -->
-                    <div class="float-tag tag-web"><i class="fa-brands fa-html5" style="color:#aaff00;margin-right:6px"></i>Web Dev</div>
-                    <div class="float-tag tag-ml"><i class="fa-solid fa-code" style="color:#aaff00;margin-right:6px"></i>Problem Solving</div>
-                </div>
+                    <!-- Card 2: Photo Card -->
+                    <div class="bento-card bento-photo-card">
+                        <div class="floating-tags-container" id="floating-tags-container">
+                            <div class="floating-tags-bg-glow"></div>
+                            <div class="floating-tags-center-icon">
+                                <i class="fa-solid fa-rocket"></i>
+                                <span class="glow-text">Passion &amp; Curiosity</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- CTA Buttons -->
-                <div class="hero-cta-row">
-                    <a href="#contact" class="btn-cta-primary" id="hero-connect-btn">
-                        <i class="fa-solid fa-paper-plane"></i> Let's Connect
-                    </a>
-                    <a href="#projects" class="btn-cta-secondary" id="hero-work-btn">
-                        <i class="fa-solid fa-eye"></i> View My Work
-                    </a>
-                    <a href="#about" class="btn-cta-secondary" id="hero-about-btn">
-                        <i class="fa-solid fa-user"></i> About Me
-                    </a>
-                    <a href="#journey" class="btn-cta-secondary" id="hero-journey-btn">
-                        <i class="fa-solid fa-map"></i> My Journey
-                    </a>
+                    <!-- Card 3: Live Dev Status & Local Clock -->
+                    <div class="bento-card bento-status-card">
+                        <div class="status-header">
+                            <span class="status-dot-wrap">
+                                <span class="status-dot"></span>
+                                <span class="status-pulse"></span>
+                            </span>
+                            <span class="status-title">Status: Active &amp; Coding</span>
+                        </div>
+                        <div class="clock-display" id="mumbai-clock">00:00:00 PM</div>
+                        <div class="location-text"><i class="fa-solid fa-location-dot"></i> Mumbai, IN (IST)</div>
+                    </div>
+
+                    <!-- Card 4: Tech Stack Snapshot Card -->
+                    <div class="bento-card bento-tech-card">
+                        <div class="tech-card-header">
+                            <i class="fa-solid fa-layer-group"></i> Core Tech Stack
+                        </div>
+                        <div class="tech-badge-container">
+                            <span class="tech-badge"><i class="fa-brands fa-java" style="color:#f89820"></i> Java</span>
+                            <span class="tech-badge"><i class="fa-brands fa-python" style="color:#3776ab"></i> Python</span>
+                            <span class="tech-badge"><i class="fa-solid fa-code" style="color:#00599c"></i> C++</span>
+                            <span class="tech-badge"><i class="fa-brands fa-html5" style="color:#e34f26"></i> HTML/CSS</span>
+                            <span class="tech-badge"><i class="fa-brands fa-js" style="color:#f7df1e"></i> JavaScript</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -605,6 +627,7 @@
             </div>
         </section>
     </main>
+
     <script src="main.js"></script>
 </body>
 </html>

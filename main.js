@@ -485,4 +485,194 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ==========================================
+    // MUMBAI LOCAL CLOCK
+    // ==========================================
+    // ==========================================
+    // INSTAGRAM-LIKE FLOATING TAGS SYSTEM
+    // ==========================================
+    const initFloatingTags = () => {
+        const container = document.getElementById('floating-tags-container');
+        if (!container) return;
+
+        const tagsData = [
+            { text: 'Engineer', icon: 'fa-solid fa-user-gear', color: '#ff5e62' },
+            { text: 'Guitarist', icon: 'fa-solid fa-guitar', color: '#ff9966' },
+            { text: 'Bookworm', icon: 'fa-solid fa-book-open', color: '#4ca1af' },
+            { text: 'Experimenter', icon: 'fa-solid fa-flask', color: '#00f0ff' },
+            { text: 'Learner', icon: 'fa-solid fa-graduation-cap', color: '#11998e' },
+            { text: 'Athlete', icon: 'fa-solid fa-running', color: '#ff416c' },
+            { text: 'Gym', icon: 'fa-solid fa-dumbbell', color: '#f857a6' },
+            { text: 'AI / ML', icon: 'fa-solid fa-brain', color: '#00f0ff' },
+            { text: 'Data Science', icon: 'fa-solid fa-chart-simple', color: '#bd53ff' },
+            { text: 'Web Dev', icon: 'fa-solid fa-laptop-code', color: '#00f0ff' },
+            { text: 'Problem Solver', icon: 'fa-solid fa-code', color: '#bd53ff' },
+            // New keyword entries requested by user (deduplicated)
+            { text: 'Software Engineering', icon: 'fa-solid fa-gear', color: '#ff5e62' },
+            { text: 'Innovation', icon: 'fa-solid fa-lightbulb', color: '#00f0ff' },
+            { text: 'AI Enthusiast', icon: 'fa-solid fa-robot', color: '#bd53ff' },
+            { text: 'UI/UX Design', icon: 'fa-solid fa-palette', color: '#ff007f' },
+            { text: 'Problem Solving', icon: 'fa-solid fa-puzzle-piece', color: '#11998e' },
+            { text: 'Continuous Learning', icon: 'fa-solid fa-graduation-cap', color: '#11998e' },
+            { text: 'Full-Stack Dev', icon: 'fa-solid fa-layer-group', color: '#00f0ff' },
+            { text: 'Entrepreneurship', icon: 'fa-solid fa-briefcase', color: '#ff9966' },
+            { text: 'System Design', icon: 'fa-solid fa-network-wired', color: '#f857a6' },
+            { text: 'Automation', icon: 'fa-solid fa-bolt', color: '#00f0ff' },
+            { text: 'Emerging Tech', icon: 'fa-solid fa-rocket', color: '#bd53ff' },
+            { text: 'Digital Transformation', icon: 'fa-solid fa-circle-nodes', color: '#ff5e62' },
+            { text: 'Tech Leadership', icon: 'fa-solid fa-users-gear', color: '#ff416c' },
+            { text: 'OOP', icon: 'fa-solid fa-cubes', color: '#00f0ff' },
+            { text: 'Clean Code Advocate', icon: 'fa-solid fa-wand-magic-sparkles', color: '#4ca1af' },
+            { text: 'Scalable Solutions', icon: 'fa-solid fa-chart-line', color: '#11998e' },
+            { text: 'Application Dev', icon: 'fa-solid fa-mobile-screen-button', color: '#bd53ff' },
+            { text: 'Software Architecture', icon: 'fa-solid fa-sitemap', color: '#bd53ff' },
+            { text: 'Debugging & Optimization', icon: 'fa-solid fa-bug-slash', color: '#ff5e62' },
+            { text: 'Agile Development', icon: 'fa-solid fa-repeat', color: '#ff9966' },
+            { text: 'Engineering Excellence', icon: 'fa-solid fa-award', color: '#bd53ff' },
+            { text: 'Lifelong Learner', icon: 'fa-solid fa-book-reader', color: '#4ca1af' },
+            { text: 'Tech Enthusiast', icon: 'fa-solid fa-desktop', color: '#00f0ff' },
+            { text: 'Creative Thinker', icon: 'fa-solid fa-brain', color: '#ff007f' },
+            { text: 'Detail Oriented', icon: 'fa-solid fa-magnifying-glass', color: '#11998e' },
+            { text: 'Growth Mindset', icon: 'fa-solid fa-seedling', color: '#11998e' },
+            { text: 'Solution Architect', icon: 'fa-solid fa-compass', color: '#ff9966' },
+            { text: 'Curious Explorer', icon: 'fa-solid fa-binoculars', color: '#00f0ff' },
+            { text: 'Self-Motivated', icon: 'fa-solid fa-fire', color: '#ff416c' },
+            { text: 'Builder', icon: 'fa-solid fa-hammer', color: '#ff9966' },
+            { text: 'Entrepreneurial Thinker', icon: 'fa-solid fa-lightbulb', color: '#00f0ff' }
+        ];
+
+        let activeTimer = null;
+        let lastSelectedIndexes = []; // track recently used tags to prevent direct duplicates
+
+        const spawnTag = (delay = 0, forcedDuration = null) => {
+            if (document.hidden) return; // Tab in background
+
+            // Select index ensuring it wasn't one of the last 15 spawned to maximize variety
+            let randomIndex;
+            let attempts = 0;
+            do {
+                randomIndex = Math.floor(Math.random() * tagsData.length);
+                attempts++;
+            } while (lastSelectedIndexes.includes(randomIndex) && attempts < 15);
+
+            lastSelectedIndexes.push(randomIndex);
+            if (lastSelectedIndexes.length > 15) {
+                lastSelectedIndexes.shift();
+            }
+
+            const tag = tagsData[randomIndex];
+            const tagEl = document.createElement('div');
+            tagEl.className = 'insta-float-tag';
+
+            // Randomize variables for the premium drift & float effect
+            const spawnX = Math.random() * 70 + 15; // 15% to 85% width
+            const scale = Math.random() * 0.3 + 0.8; // scale 0.8 to 1.1
+            const duration = forcedDuration || (Math.random() * 3.5 + 4.5); // 4.5s to 8.0s
+            
+            const sway1 = `${Math.random() * 40 - 20}px`;
+            const sway2 = `${Math.random() * 60 - 30}px`;
+            const sway3 = `${Math.random() * 40 - 20}px`;
+            
+            const rot1 = `${Math.random() * 20 - 10}deg`;
+            const rot2 = `${Math.random() * 30 - 15}deg`;
+            const rot3 = `${Math.random() * 20 - 10}deg`;
+
+            tagEl.style.setProperty('--spawn-x', `${spawnX}%`);
+            tagEl.style.setProperty('--scale', scale);
+            tagEl.style.setProperty('--float-duration', `${duration}s`);
+            tagEl.style.setProperty('--float-delay', `${delay}s`);
+            tagEl.style.setProperty('--sway-1', sway1);
+            tagEl.style.setProperty('--sway-2', sway2);
+            tagEl.style.setProperty('--sway-3', sway3);
+            tagEl.style.setProperty('--rot-1', rot1);
+            tagEl.style.setProperty('--rot-2', rot2);
+            tagEl.style.setProperty('--rot-3', rot3);
+
+            // Set dynamic aesthetic border and subtle box shadow based on the brand color
+            tagEl.style.borderColor = `${tag.color}3a`;
+            tagEl.style.boxShadow = `0 4px 15px rgba(0, 0, 0, 0.2), 0 0 12px ${tag.color}18, inset 0 0 6px ${tag.color}10`;
+
+            tagEl.innerHTML = `<i class="${tag.icon}" style="color:${tag.color};margin-right:6px"></i>${tag.text}`;
+
+            container.appendChild(tagEl);
+
+            // Clean up DOM after animation completes
+            tagEl.addEventListener('animationend', () => {
+                tagEl.remove();
+            });
+        };
+
+        // Spawning cycle with slight random delay variations
+        const startSpawner = () => {
+            if (activeTimer) return;
+            
+            const runCycle = () => {
+                // Spawn 1 or 2 tags at a time to create a busier, organic look
+                const batchSize = Math.random() > 0.6 ? 2 : 1;
+                for (let b = 0; b < batchSize; b++) {
+                    spawnTag(0);
+                }
+                // Random interval between 200ms and 500ms for a busier, cluttered stream
+                const nextInterval = Math.random() * 300 + 200;
+                activeTimer = setTimeout(runCycle, nextInterval);
+            };
+            runCycle();
+        };
+
+        const stopSpawner = () => {
+            if (activeTimer) {
+                clearTimeout(activeTimer);
+                activeTimer = null;
+            }
+        };
+
+        // Optimization: IntersectionObserver to run spawner ONLY when hero card is in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startSpawner();
+                } else {
+                    stopSpawner();
+                }
+            });
+        }, { threshold: 0.15 });
+
+        observer.observe(container);
+
+        // Pre-populate multiple tags immediately with negative delays to populate the screen instantly
+        for (let i = 0; i < 15; i++) {
+            const randomDuration = Math.random() * 3.5 + 4.5;
+            const negativeDelay = -(Math.random() * randomDuration);
+            spawnTag(negativeDelay, randomDuration);
+        }
+    };
+    initFloatingTags();
+
+    // ==========================================
+    // MUMBAI LOCAL CLOCK
+    // ==========================================
+    const updateClock = () => {
+        const clockEl = document.getElementById('mumbai-clock');
+        if (!clockEl) return;
+        
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        // Mumbai is UTC + 5.5
+        const mumbaiTime = new Date(utc + (3600000 * 5.5));
+        
+        let hours = mumbaiTime.getHours();
+        let minutes = mumbaiTime.getMinutes();
+        let seconds = mumbaiTime.getSeconds();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        
+        clockEl.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+    };
+    setInterval(updateClock, 1000);
+    updateClock();
+
 });
