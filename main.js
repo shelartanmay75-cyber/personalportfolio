@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-brands fa-java',
             color: '#f89820',
             experience: '2+ years of learning and building robust applications.',
-            projects: ['Restaurant Ordering Website','Command Line RPG Games','Library Management System'],
+            projects: ['DocuMind AI','Command Line RPG Games','Library Management System'],
             tech: ['OOP Principles','Collections Framework','File Handling','Exception Handling','Multithreading']
         },
         'python': {
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-brands fa-html5',
             color: '#e34f26',
             experience: '3+ years crafting fully responsive, animation-heavy interfaces.',
-            projects: ['Interactive Portfolio','Restaurant Ordering UI','Hackathon Landing Pages'],
+            projects: ['Interactive Portfolio','DocuMind AI UI','Hackathon Landing Pages'],
             tech: ['Responsive Web Design','Flexbox / Grid','Keyframe Animations','Glassmorphism']
         },
         'javascript': {
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-brands fa-js',
             color: '#f7df1e',
             experience: '2+ years of frontend application state and DOM orchestration.',
-            projects: ['Dynamic Portfolio','Interactive Game Engines','Restaurant Cart Logic'],
+            projects: ['Dynamic Portfolio','Interactive Game Engines','DocuMind AI Chat Logic'],
             tech: ['ES6+ Syntax','DOM Manipulation','Async Programming','JSON & LocalStorage']
         },
         'git': {
