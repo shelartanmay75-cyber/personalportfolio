@@ -30,8 +30,11 @@
                 <div class="terminal-output" id="terminal-output"></div>
             </div>
         </div>
+        <div class="terminal-action-container">
+            <button class="btn-terminal-enter" id="btn-terminal-enter" aria-label="Enter site">Initialize System</button>
+        </div>
         <div class="intro-scroll-hint" id="intro-scroll-hint">
-            <span>scroll to execute</span>
+            <span>scroll or tap to execute</span>
             <div class="scroll-hint-arrow"><i class="fa-solid fa-chevron-down"></i></div>
         </div>
     </div>
@@ -53,7 +56,7 @@
         <div class="nav-center">
             <a href="mailto:shelartanmay75@gmail.com" class="email-link">shelartanmay75@gmail.com</a>
         </div>
-        <div class="nav-right">
+        <div class="nav-right" id="nav-right-drawer">
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -63,6 +66,11 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
     </nav>
 
     <!-- Main Content -->
@@ -257,6 +265,10 @@
             <div class="skills-header text-center">
                 <h2>My <span class="highlight">Tech Universe</span></h2>
                 <p class="section-subtitle">Click on a planet to explore my experience, projects, and technologies used.</p>
+                <div class="skills-view-toggle-wrap">
+                    <button class="btn-skills-toggle active" id="skills-btn-galaxy" data-view="galaxy"><i class="fa-solid fa-circle-nodes"></i> Galaxy View</button>
+                    <button class="btn-skills-toggle" id="skills-btn-grid" data-view="grid"><i class="fa-solid fa-grip"></i> Grid View</button>
+                </div>
             </div>
             
             <div class="universe-container">
@@ -355,6 +367,48 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Alternative Grid View for Mobile / Accessibility -->
+            <div class="skills-grid-view" id="skills-grid-view" style="display: none;">
+                <div class="skills-grid-container">
+                    <div class="skill-card-new" data-skill="java" style="--skill-color: #f89820;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-brands fa-java" style="color: #f89820;"></i></div>
+                        <h3>Java</h3>
+                        <p>OOP, Collections, Exception Handling, Multithreading</p>
+                    </div>
+                    <div class="skill-card-new" data-skill="python" style="--skill-color: #3776ab;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-brands fa-python" style="color: #3776ab;"></i></div>
+                        <h3>Python</h3>
+                        <p>Automation & Scripting, Data Analysis (Pandas/NumPy)</p>
+                    </div>
+                    <div class="skill-card-new" data-skill="cpp" style="--skill-color: #00599c;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-solid fa-code" style="color: #00599c;"></i></div>
+                        <h3>C++</h3>
+                        <p>Algorithmic problem solving, STL, Arduino IoT</p>
+                    </div>
+                    <div class="skill-card-new" data-skill="htmlcss" style="--skill-color: #e34f26;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-brands fa-html5" style="color: #e34f26;"></i></div>
+                        <h3>HTML & CSS</h3>
+                        <p>Responsive Web Design, Flexbox / Grid, Keyframe Animations</p>
+                    </div>
+                    <div class="skill-card-new" data-skill="javascript" style="--skill-color: #f7df1e;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
+                        <h3>JavaScript</h3>
+                        <p>ES6+ Syntax, DOM Manipulation, Async Programming</p>
+                    </div>
+                    <div class="skill-card-new" data-skill="git" style="--skill-color: #f05032;">
+                        <div class="skill-card-new-glow"></div>
+                        <div class="skill-card-icon"><i class="fa-brands fa-git-alt" style="color: #f05032;"></i></div>
+                        <h3>Git & GitHub</h3>
+                        <p>Branching & Merging, Conflict Resolution, Team Collaboration</p>
+                    </div>
+                </div>
+            </div>
             
         </section>
 
@@ -425,6 +479,64 @@
                     <h2 class="journey-title" id="journey-title">My Journey</h2>
                     <div class="journey-details" id="journey-details">
                         <p>Click on an island to view the journey details.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Mobile Timeline View -->
+            <div class="journey-mobile-timeline">
+                <h2 class="journey-mobile-title text-center"><i class="fa-solid fa-compass highlight"></i> My Journey</h2>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Milestone 1: 10th Grade -->
+                    <div class="timeline-card" style="--node-color: #00f0ff;">
+                        <div class="timeline-node" style="box-shadow: 0 0 15px #00f0ff;"><i class="fa-solid fa-school"></i></div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-date">2023</span>
+                            <h3>Completed School</h3>
+                            <p>My best 10 years — school ranker with 3rd place, 95% in SSC boards.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2: 12th Grade -->
+                    <div class="timeline-card" style="--node-color: #bd53ff;">
+                        <div class="timeline-node" style="box-shadow: 0 0 15px #bd53ff;"><i class="fa-solid fa-book"></i></div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-date">2025</span>
+                            <h3>Completed 12th</h3>
+                            <p>Cracked JEE & CET — 94.11 percentile in CET, 80.5% in 12th boards HSC.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3: College -->
+                    <div class="timeline-card" style="--node-color: #00ff99;">
+                        <div class="timeline-node" style="box-shadow: 0 0 15px #00ff99;"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-date">2025 - Present</span>
+                            <h3>Pursuing B.Tech</h3>
+                            <p>Pursuing AI & Data Science at VESIT. Grabbing every opportunity that helps me grow.</p>
+                            
+                            <div class="timeline-sub-heading">Hackathons & Extra-curriculars:</div>
+                            <div class="timeline-hackathons">
+                                <div class="timeline-hack-item">
+                                    <strong>Hack-AI-Thon</strong>
+                                    <span>By AI Colegion</span>
+                                </div>
+                                <div class="timeline-hack-item">
+                                    <strong>Genesis Hackathon</strong>
+                                    <span>By Quest IT</span>
+                                </div>
+                                <div class="timeline-hack-item">
+                                    <strong>Invictus Hackathon</strong>
+                                    <span>By ISTE-VESIT</span>
+                                </div>
+                                <div class="timeline-hack-item">
+                                    <strong>Syrus Hackathon</strong>
+                                    <span>By CodeCell++</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // CINEMATIC INTRO OVERLAY
     // ==========================================
-    const introOverlay  = document.getElementById('intro-overlay');
-    const typedCmd      = document.getElementById('typed-cmd');
-    const termCursor    = document.getElementById('term-cursor');
-    const termOutput    = document.getElementById('terminal-output');
-    const scrollHint    = document.getElementById('intro-scroll-hint');
+    const introOverlay = document.getElementById('intro-overlay');
+    const typedCmd = document.getElementById('typed-cmd');
+    const termCursor = document.getElementById('term-cursor');
+    const termOutput = document.getElementById('terminal-output');
+    const scrollHint = document.getElementById('intro-scroll-hint');
 
-    const CMD_TEXT      = 'createFuture();';
-    let cmdTyped        = false;
-    let scrollReady     = false;
-    let introActive     = true;
+    const CMD_TEXT = 'createFuture();';
+    let cmdTyped = false;
+    let scrollReady = false;
+    let introActive = true;
 
     // --- Particle canvas inside overlay ---
     const canvas = document.getElementById('intro-particles');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let particles = [];
 
         const resizeCanvas = () => {
-            canvas.width  = window.innerWidth;
+            canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         };
         resizeCanvas();
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fill();
                 p.x += p.dx;
                 p.y += p.dy;
-                if (p.x < 0 || p.x > canvas.width)  p.dx *= -1;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
             });
             if (introActive) requestAnimationFrame(drawParticles);
@@ -83,9 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i >= CMD_TEXT.length) {
                 clearInterval(interval);
                 cmdTyped = true;
-                // Show scroll hint after a short pause
+                // Show scroll hint and enter button after a short pause
                 setTimeout(() => {
                     if (scrollHint) scrollHint.classList.add('hint-visible');
+                    const enterBtn = document.getElementById('btn-terminal-enter');
+                    if (enterBtn) enterBtn.classList.add('btn-visible');
                     scrollReady = true;
                 }, 800);
             }
@@ -100,8 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!scrollReady || !introActive) return;
         introActive = false;
 
-        // Remove scroll hint
+        // Remove scroll hint and enter button
         if (scrollHint) scrollHint.classList.remove('hint-visible');
+        const enterBtn = document.getElementById('btn-terminal-enter');
+        if (enterBtn) enterBtn.classList.remove('btn-visible');
 
         // Hide blinking cursor while "executing"
         if (termCursor) termCursor.style.display = 'none';
@@ -143,10 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
         executeIntro();
     };
 
-    window.addEventListener('wheel',      onScrollAttempt, { passive: false });
-    window.addEventListener('touchmove',  onScrollAttempt, { passive: false });
+    // Click event for the initialize button
+    const enterBtn = document.getElementById('btn-terminal-enter');
+    if (enterBtn) {
+        enterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            executeIntro();
+        });
+    }
+
+    window.addEventListener('wheel', onScrollAttempt, { passive: false });
+    window.addEventListener('touchmove', onScrollAttempt, { passive: false });
     window.addEventListener('keydown', (e) => {
-        if (['ArrowDown','PageDown','Space',' '].includes(e.key)) onScrollAttempt(e);
+        if (['ArrowDown', 'PageDown', 'Space', ' '].includes(e.key)) onScrollAttempt(e);
     });
 
     // ==========================================
@@ -154,25 +167,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const sectionRevealData = [
         {
-            headerId:  'about-terminal-header',
-            textId:    'about-sth-text',
-            checkId:   'about-sth-check',
+            headerId: 'about-terminal-header',
+            textId: 'about-sth-text',
+            checkId: 'about-sth-check',
             sectionId: 'about',
-            message:   'Generating About Section...',
+            message: 'Generating About Section...',
         },
         {
-            headerId:  'skills-terminal-header',
-            textId:    'skills-sth-text',
-            checkId:   'skills-sth-check',
+            headerId: 'skills-terminal-header',
+            textId: 'skills-sth-text',
+            checkId: 'skills-sth-check',
             sectionId: 'skills',
-            message:   'Generating Skills...',
+            message: 'Generating Skills...',
         },
         {
-            headerId:  'projects-terminal-header',
-            textId:    'projects-sth-text',
-            checkId:   'projects-sth-check',
+            headerId: 'projects-terminal-header',
+            textId: 'projects-sth-text',
+            checkId: 'projects-sth-check',
             sectionId: 'projects',
-            message:   'Generating Projects...',
+            message: 'Generating Projects...',
         },
     ];
 
@@ -192,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger for each section
     const triggerSectionReveal = (data) => {
-        const header  = document.getElementById(data.headerId);
-        const textEl  = document.getElementById(data.textId);
+        const header = document.getElementById(data.headerId);
+        const textEl = document.getElementById(data.textId);
         const checkEl = document.getElementById(data.checkId);
         const section = document.getElementById(data.sectionId);
 
@@ -237,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // FINAL CINEMATIC SCENE TYPEWRITER
     // ==========================================
     const finalTagline = document.getElementById('final-tagline');
-    const FINAL_TEXT   = 'Built from curiosity.\nPowered by code.';
+    const FINAL_TEXT = 'Built from curiosity.\nPowered by code.';
 
     if (finalTagline) {
         const finalObserver = new IntersectionObserver((entries) => {
@@ -270,10 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const star = document.createElement('div');
             star.classList.add('star');
             const size = Math.random() * 2.5 + 0.5;
-            star.style.width  = `${size}px`;
+            star.style.width = `${size}px`;
             star.style.height = `${size}px`;
-            star.style.top    = `${Math.random() * 100}%`;
-            star.style.left   = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
             star.style.setProperty('--twinkle-duration', `${Math.random() * 4 + 2}s`);
             star.style.setProperty('--base-opacity', Math.random() * 0.5 + 0.2);
             starfield.appendChild(star);
@@ -283,10 +296,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // SKILLS GALAXY INTERACTIONS
     // ==========================================
-    const planets   = document.querySelectorAll('.skill-planet');
+    const planets = document.querySelectorAll('.skill-planet');
     const infoPanel = document.getElementById('galaxy-info-panel');
-    const closeBtn  = document.getElementById('panel-close-btn');
-    const orbits    = document.querySelectorAll('.orbit-path');
+    const closeBtn = document.getElementById('panel-close-btn');
+    const orbits = document.querySelectorAll('.orbit-path');
 
     const skillUniverseData = {
         'java': {
@@ -294,80 +307,86 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-brands fa-java',
             color: '#f89820',
             experience: '2+ years of learning and building robust applications.',
-            projects: ['DocuMind AI','Command Line RPG Games','Library Management System'],
-            tech: ['OOP Principles','Collections Framework','File Handling','Exception Handling','Multithreading']
+            projects: ['DocuMind AI', 'Command Line RPG Games', 'Library Management System'],
+            tech: ['OOP Principles', 'Collections Framework', 'File Handling', 'Exception Handling', 'Multithreading']
         },
         'python': {
             name: 'Python',
             icon: 'fa-brands fa-python',
             color: '#3776ab',
             experience: '2+ years of scripting, automation, and data handling.',
-            projects: ['Automated Web Scrapers','Data Visualization Dashboard','System Scripting Utilities'],
-            tech: ['Automation & Scripting','Data Analysis (Pandas/NumPy)','APIs & Web Scraping','File Parsing']
+            projects: ['Automated Web Scrapers', 'Data Visualization Dashboard', 'System Scripting Utilities'],
+            tech: ['Automation & Scripting', 'Data Analysis (Pandas/NumPy)', 'APIs & Web Scraping', 'File Parsing']
         },
         'cpp': {
             name: 'C++',
             icon: 'fa-solid fa-code',
             color: '#00599c',
             experience: '1.5+ years of algorithmic problem solving.',
-            projects: ['Arduino Automation Projects','DSA Library','Graphics Utilities'],
-            tech: ['OOP Design','STL','Memory Management','Pointers & References']
+            projects: ['Arduino Automation Projects', 'DSA Library', 'Graphics Utilities'],
+            tech: ['OOP Design', 'STL', 'Memory Management', 'Pointers & References']
         },
         'htmlcss': {
             name: 'HTML & CSS',
             icon: 'fa-brands fa-html5',
             color: '#e34f26',
             experience: '3+ years crafting fully responsive, animation-heavy interfaces.',
-            projects: ['Interactive Portfolio','DocuMind AI UI','Hackathon Landing Pages'],
-            tech: ['Responsive Web Design','Flexbox / Grid','Keyframe Animations','Glassmorphism']
+            projects: ['Interactive Portfolio', 'DocuMind AI UI', 'Hackathon Landing Pages'],
+            tech: ['Responsive Web Design', 'Flexbox / Grid', 'Keyframe Animations', 'Glassmorphism']
         },
         'javascript': {
             name: 'JavaScript',
             icon: 'fa-brands fa-js',
             color: '#f7df1e',
             experience: '2+ years of frontend application state and DOM orchestration.',
-            projects: ['Dynamic Portfolio','Interactive Game Engines','DocuMind AI Chat Logic'],
-            tech: ['ES6+ Syntax','DOM Manipulation','Async Programming','JSON & LocalStorage']
+            projects: ['Dynamic Portfolio', 'Interactive Game Engines', 'DocuMind AI Chat Logic'],
+            tech: ['ES6+ Syntax', 'DOM Manipulation', 'Async Programming', 'JSON & LocalStorage']
         },
         'git': {
             name: 'Git & GitHub',
             icon: 'fa-brands fa-git-alt',
             color: '#f05032',
             experience: '2+ years of team collaboration and version control.',
-            projects: ['Hackathon Collaborative Repos','Open Source Contributions','Portfolio Deployment'],
-            tech: ['Branching & Merging','Conflict Resolution','Pull Requests','GitHub Pages']
+            projects: ['Hackathon Collaborative Repos', 'Open Source Contributions', 'Portfolio Deployment'],
+            tech: ['Branching & Merging', 'Conflict Resolution', 'Pull Requests', 'GitHub Pages']
         }
+    };
+
+    const showSkillDetails = (skillId) => {
+        const data = skillUniverseData[skillId];
+        if (!data) return;
+
+        document.getElementById('panel-skill-name').textContent = data.name;
+        document.getElementById('panel-skill-experience').textContent = data.experience;
+
+        const iconWrap = document.getElementById('panel-skill-icon-wrap');
+        iconWrap.innerHTML = `<i class="${data.icon}" style="color:${data.color};font-size:2rem"></i>`;
+        iconWrap.style.borderColor = `${data.color}44`;
+
+        const projectsList = document.getElementById('panel-skill-projects');
+        projectsList.innerHTML = '';
+        data.projects.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = p;
+            projectsList.appendChild(li);
+        });
+
+        const techWrap = document.getElementById('panel-skill-tech');
+        techWrap.innerHTML = '';
+        data.tech.forEach(t => {
+            const span = document.createElement('span');
+            span.textContent = t;
+            techWrap.appendChild(span);
+        });
+
+        infoPanel.classList.add('panel-open');
     };
 
     planets.forEach(planet => {
         planet.addEventListener('click', (e) => {
             e.stopPropagation();
             const skillId = planet.getAttribute('data-skill');
-            const data = skillUniverseData[skillId];
-            if (!data) return;
-
-            document.getElementById('panel-skill-name').textContent = data.name;
-            document.getElementById('panel-skill-experience').textContent = data.experience;
-
-            const iconWrap = document.getElementById('panel-skill-icon-wrap');
-            iconWrap.innerHTML = `<i class="${data.icon}" style="color:${data.color};font-size:2rem"></i>`;
-            iconWrap.style.borderColor = `${data.color}44`;
-
-            const projectsList = document.getElementById('panel-skill-projects');
-            projectsList.innerHTML = '';
-            data.projects.forEach(p => {
-                const li = document.createElement('li');
-                li.textContent = p;
-                projectsList.appendChild(li);
-            });
-
-            const techWrap = document.getElementById('panel-skill-tech');
-            techWrap.innerHTML = '';
-            data.tech.forEach(t => {
-                const span = document.createElement('span');
-                span.textContent = t;
-                techWrap.appendChild(span);
-            });
+            showSkillDetails(skillId);
 
             planets.forEach(p => { p.classList.remove('active-planet'); p.classList.add('orbit-paused'); });
             planet.classList.add('active-planet');
@@ -376,22 +395,60 @@ document.addEventListener('DOMContentLoaded', () => {
             orbits.forEach(o => o.classList.remove('orbit-glow-active'));
             const parentOrbit = planet.closest('.orbit-path');
             if (parentOrbit) parentOrbit.classList.add('orbit-glow-active');
-
-            infoPanel.classList.add('panel-open');
         });
     });
+
+    // Grid skill cards interactions
+    const gridCards = document.querySelectorAll('.skill-card-new');
+    gridCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const skillId = card.getAttribute('data-skill');
+            showSkillDetails(skillId);
+            
+            gridCards.forEach(c => c.classList.remove('active-card'));
+            card.classList.add('active-card');
+        });
+    });
+
+    // View toggling (Galaxy vs Grid)
+    const btnGalaxy = document.getElementById('skills-btn-galaxy');
+    const btnGrid = document.getElementById('skills-btn-grid');
+    const universeContainer = document.querySelector('.universe-container');
+    const skillsGridView = document.getElementById('skills-grid-view');
 
     const closePanel = () => {
         if (infoPanel) infoPanel.classList.remove('panel-open');
         planets.forEach(p => { p.classList.remove('active-planet'); p.classList.remove('orbit-paused'); });
         orbits.forEach(o => o.classList.remove('orbit-glow-active'));
+        gridCards.forEach(c => c.classList.remove('active-card'));
     };
+
+    if (btnGalaxy && btnGrid && universeContainer && skillsGridView) {
+        btnGalaxy.addEventListener('click', () => {
+            btnGalaxy.classList.add('active');
+            btnGrid.classList.remove('active');
+            universeContainer.style.display = 'flex';
+            skillsGridView.style.display = 'none';
+            closePanel();
+        });
+
+        btnGrid.addEventListener('click', () => {
+            btnGrid.classList.add('active');
+            btnGalaxy.classList.remove('active');
+            universeContainer.style.display = 'none';
+            skillsGridView.style.display = 'block';
+            closePanel();
+        });
+    }
 
     if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closePanel(); });
 
     document.addEventListener('click', (e) => {
         if (infoPanel && infoPanel.classList.contains('panel-open')) {
-            if (!infoPanel.contains(e.target) && !Array.from(planets).some(p => p.contains(e.target))) {
+            const clickOnPlanet = Array.from(planets).some(p => p.contains(e.target));
+            const clickOnGridCard = Array.from(gridCards).some(c => c.contains(e.target));
+            if (!infoPanel.contains(e.target) && !clickOnPlanet && !clickOnGridCard) {
                 closePanel();
             }
         }
@@ -401,8 +458,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // PROJECTS CAROUSEL BEHAVIOR
     // ==========================================
     const carousel = document.getElementById('projects-carousel');
-    const prevBtn  = document.getElementById('project-prev-btn');
-    const nextBtn  = document.getElementById('project-next-btn');
+    const prevBtn = document.getElementById('project-prev-btn');
+    const nextBtn = document.getElementById('project-next-btn');
 
     if (carousel) {
         if (prevBtn && nextBtn) {
@@ -448,23 +505,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // JOURNEY SECTION: Map Interactions & Boat
     // ==========================================
     const journeyDetails = document.getElementById('journey-details');
-    const journeyTitle   = document.getElementById('journey-title');
-    const islands        = document.querySelectorAll('.island:not(.locked)');
-    const viewExpBtn     = document.getElementById('view-experiences-btn');
+    const journeyTitle = document.getElementById('journey-title');
+    const islands = document.querySelectorAll('.island:not(.locked)');
+    const viewExpBtn = document.getElementById('view-experiences-btn');
     const hackathonsList = document.getElementById('hackathons-list');
 
     const journeyData = {
-        'island-10th':    { title: 'Completed School',  text: 'My best 10 years — school ranker with 3rd place, 95% in SSC boards.' },
-        'island-12th':    { title: 'Completed 12th',    text: 'Cracked JEE & CET — 94.11 percentile in CET, 80.5% in 12th boards HSC.' },
-        'island-college': { title: 'Pursuing B.Tech',   text: 'Pursuing AI & Data Science at VESIT. Grabbing every opportunity that helps me grow.' },
+        'island-10th': { title: 'Completed School', text: 'My best 10 years — school ranker with 3rd place, 95% in SSC boards.' },
+        'island-12th': { title: 'Completed 12th', text: 'Cracked JEE & CET — 94.11 percentile in CET, 80.5% in 12th boards HSC.' },
+        'island-college': { title: 'Pursuing B.Tech', text: 'Pursuing AI & Data Science at VESIT. Grabbing every opportunity that helps me grow.' },
     };
 
     islands.forEach(island => {
         island.addEventListener('click', () => {
-            const id   = island.id;
+            const id = island.id;
             const data = journeyData[id];
             if (data) {
-                journeyTitle.innerHTML  = data.title;
+                journeyTitle.innerHTML = data.title;
                 journeyDetails.innerHTML = `<p>${data.text}</p>`;
                 const boat = document.getElementById('map-boat');
                 if (boat) { boat.style.top = island.style.top; boat.style.left = island.style.left; }
@@ -564,15 +621,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const tagEl = document.createElement('div');
             tagEl.className = 'insta-float-tag';
 
-            // Randomize variables for the premium drift & float effect
-            const spawnX = Math.random() * 70 + 15; // 15% to 85% width
+            // Randomize variables for the premium drift & float effect - narrower on mobile to prevent clipping
+            const isMobile = window.innerWidth <= 600;
+            const spawnX = isMobile ? (Math.random() * 40 + 30) : (Math.random() * 70 + 15); // 15% to 85% width (desktop) or 30% to 70% width (mobile)
             const scale = Math.random() * 0.3 + 0.8; // scale 0.8 to 1.1
             const duration = forcedDuration || (Math.random() * 3.5 + 4.5); // 4.5s to 8.0s
-            
+
             const sway1 = `${Math.random() * 40 - 20}px`;
             const sway2 = `${Math.random() * 60 - 30}px`;
             const sway3 = `${Math.random() * 40 - 20}px`;
-            
+
             const rot1 = `${Math.random() * 20 - 10}deg`;
             const rot2 = `${Math.random() * 30 - 15}deg`;
             const rot3 = `${Math.random() * 20 - 10}deg`;
@@ -605,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Spawning cycle with slight random delay variations
         const startSpawner = () => {
             if (activeTimer) return;
-            
+
             const runCycle = () => {
                 // Spawn 1 or 2 tags at a time to create a busier, organic look
                 const batchSize = Math.random() > 0.6 ? 2 : 1;
@@ -654,25 +712,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateClock = () => {
         const clockEl = document.getElementById('mumbai-clock');
         if (!clockEl) return;
-        
+
         const now = new Date();
         const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
         // Mumbai is UTC + 5.5
         const mumbaiTime = new Date(utc + (3600000 * 5.5));
-        
+
         let hours = mumbaiTime.getHours();
         let minutes = mumbaiTime.getMinutes();
         let seconds = mumbaiTime.getSeconds();
         const ampm = hours >= 12 ? 'PM' : 'AM';
-        
+
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
-        
+
         clockEl.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     };
     setInterval(updateClock, 1000);
     updateClock();
 
+    // ==========================================
+    // MOBILE HAMBURGER MENU & DRAWER
+    // ==========================================
+    const navHamburger = document.getElementById('nav-hamburger');
+    const navRightDrawer = document.getElementById('nav-right-drawer');
+    const navLinksList = document.querySelectorAll('.nav-links a');
+
+    if (navHamburger && navRightDrawer) {
+        navHamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navHamburger.classList.toggle('active');
+            navRightDrawer.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Close menu on link clicks
+        navLinksList.forEach(link => {
+            link.addEventListener('click', () => {
+                navHamburger.classList.remove('active');
+                navRightDrawer.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navRightDrawer.contains(e.target) && !navHamburger.contains(e.target)) {
+                navHamburger.classList.remove('active');
+                navRightDrawer.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
 });
