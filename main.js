@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-solid fa-code',
             color: '#00599c',
             experience: '1.5+ years of algorithmic problem solving.',
-            projects: ['Arduino Automation Projects', 'DSA Library', 'Graphics Utilities'],
+            projects: ['DSA Library', 'Graphics Utilities', 'Embedded System Logic'],
             tech: ['OOP Design', 'STL', 'Memory Management', 'Pointers & References']
         },
         'htmlcss': {
@@ -331,16 +331,16 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'fa-brands fa-html5',
             color: '#e34f26',
             experience: '3+ years crafting fully responsive, animation-heavy interfaces.',
-            projects: ['Interactive Portfolio', 'DocuMind AI UI', 'Hackathon Landing Pages'],
-            tech: ['Responsive Web Design', 'Flexbox / Grid', 'Keyframe Animations', 'Glassmorphism']
+            projects: ['Interactive Portfolio', 'Inbox OS Web UI', 'DocuMind AI UI'],
+            tech: ['Responsive Web Design', 'Tailwind CSS', 'Flexbox / Grid', 'Glassmorphism']
         },
         'javascript': {
-            name: 'JavaScript',
+            name: 'JavaScript & TS',
             icon: 'fa-brands fa-js',
             color: '#f7df1e',
-            experience: '2+ years of frontend application state and DOM orchestration.',
-            projects: ['Dynamic Portfolio', 'Interactive Game Engines', 'DocuMind AI Chat Logic'],
-            tech: ['ES6+ Syntax', 'DOM Manipulation', 'Async Programming', 'JSON & LocalStorage']
+            experience: '2+ years of frontend & fullstack web application development.',
+            projects: ['Inbox OS (Fullstack)', 'Dynamic Portfolio', 'DocuMind AI Chat Logic'],
+            tech: ['React 19 & TypeScript', 'Node.js & Express', 'Socket.io', 'Async Programming']
         },
         'git': {
             name: 'Git & GitHub',
