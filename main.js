@@ -464,12 +464,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (carousel) {
         if (prevBtn && nextBtn) {
             prevBtn.addEventListener('click', () => {
-                const w = carousel.querySelector('.project-carousel-card').offsetWidth;
-                carousel.scrollBy({ left: -(w + 32), behavior: 'smooth' });
+                const card = carousel.querySelector('.project-carousel-card');
+                const w = card ? card.offsetWidth + 40 : 420;
+                carousel.scrollBy({ left: -w, behavior: 'smooth' });
             });
             nextBtn.addEventListener('click', () => {
-                const w = carousel.querySelector('.project-carousel-card').offsetWidth;
-                carousel.scrollBy({ left: w + 32, behavior: 'smooth' });
+                const card = carousel.querySelector('.project-carousel-card');
+                const w = card ? card.offsetWidth + 40 : 420;
+                carousel.scrollBy({ left: w, behavior: 'smooth' });
             });
         }
         carousel.addEventListener('wheel', (e) => {
@@ -528,12 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parallaxX = -((x - centerX) / centerX) * 8;
                 const parallaxY = -((y - centerY) / centerY) * 8;
 
-                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.12, 1.12, 1.12) translateY(-14px)`;
+                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.05, 1.05, 1.05) translateY(-4px)`;
                 c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
                 c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
 
                 if (img) {
-                    img.style.transform = `scale(1.15) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
+                    img.style.transform = `scale(1.08) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
                 }
             });
 
@@ -547,40 +549,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Dynamic active-card detection on scroll (Edge snapping & Center focus)
+        // Dynamic active-card detection on scroll (Center focus & smooth recede)
         const updateActiveCard = () => {
             if (!carousel) return;
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            const currentScroll = carousel.scrollLeft;
+            const carouselRect = carousel.getBoundingClientRect();
+            const carouselCenterX = carouselRect.left + carouselRect.width / 2;
 
+            let minDistance = Infinity;
             let activeCard = null;
 
-            // Forced edge snapping: scrolled to start -> 1st card pops out
-            if (currentScroll <= 35) {
-                activeCard = projectCards[0];
-            }
-            // Forced edge snapping: scrolled to end -> last card pops out
-            else if (currentScroll >= maxScroll - 35) {
-                activeCard = projectCards[projectCards.length - 1];
-            }
-            // Otherwise pick card closest to container center
-            else {
-                const carouselRect = carousel.getBoundingClientRect();
-                const carouselCenterX = carouselRect.left + carouselRect.width / 2;
+            projectCards.forEach(card => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const distance = Math.abs(carouselCenterX - cardCenterX);
 
-                let minDistance = Infinity;
-
-                projectCards.forEach(card => {
-                    const cardRect = card.getBoundingClientRect();
-                    const cardCenterX = cardRect.left + cardRect.width / 2;
-                    const distance = Math.abs(carouselCenterX - cardCenterX);
-
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        activeCard = card;
-                    }
-                });
-            }
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeCard = card;
+                }
+            });
 
             if (activeCard) {
                 carousel.classList.add('has-active');

@@ -1821,7 +1821,7 @@ body.scroll-locked {
    FEATURED PROJECTS SECTION - NETFLIX CAROUSEL
    ========================================================================== */
 .projects-carousel-section {
-    padding: 120px 4rem;
+    padding: 100px 1rem;
     overflow: hidden;
     background: #0d0d0d;
 }
@@ -1831,7 +1831,7 @@ body.scroll-locked {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .projects-carousel {
@@ -1841,30 +1841,26 @@ body.scroll-locked {
     scroll-snap-type: x mandatory;
     gap: 2.5rem;
     width: 100%;
-    padding: 3.5rem 1.5rem;
+    /* Center-aligned padding so 1st, middle, and last cards land dead-center */
+    padding: 2.5rem calc(50% - 190px);
     scrollbar-width: none; /* Hide standard scrollbar Firefox */
+    perspective: 1200px;
 }
 
 .projects-carousel::-webkit-scrollbar {
     display: none; /* Hide scrollbar Chrome/Safari/Edge */
 }
 
-/* Base Card Styles */
-.projects-carousel {
-    perspective: 1200px;
-}
-
 .project-carousel-card {
-    flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards visible */
-    scroll-snap-align: start;
+    flex: 0 0 380px; /* Fixed elegant card size for accurate centering */
+    max-width: 85vw;
+    scroll-snap-align: center; /* Center snap! */
+    scroll-snap-stop: always;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     overflow: hidden;
     backdrop-filter: blur(12px);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -1897,7 +1893,7 @@ body.scroll-locked {
     opacity: 1;
 }
 
-/* Dynamic Card Focus & Dramatic Pop Out Effect */
+/* Dynamic Card Focus & Receding Pop-Out Effect (No Screen Clipping) */
 .projects-carousel .project-carousel-card {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
                 opacity 0.4s ease,
@@ -1907,19 +1903,19 @@ body.scroll-locked {
 }
 
 .projects-carousel.has-active .project-carousel-card {
-    opacity: 0.32;
-    filter: brightness(0.5) blur(1px);
+    opacity: 0.35;
+    filter: brightness(0.55) blur(0.5px);
     transform: scale(0.88);
 }
 
 .projects-carousel.has-active .project-carousel-card.card-active,
 .projects-carousel .project-carousel-card:hover {
     opacity: 1 !important;
-    filter: brightness(1.1) blur(0px) !important;
-    transform: scale(1.12) translateY(-14px) !important;
-    border-color: rgba(0, 240, 255, 0.85) !important;
-    box-shadow: 0 30px 70px rgba(0, 240, 255, 0.3), 0 0 35px rgba(0, 240, 255, 0.2) !important;
-    z-index: 15;
+    filter: brightness(1.05) blur(0px) !important;
+    transform: scale(1.05) translateY(-4px) !important;
+    border-color: rgba(0, 240, 255, 0.7) !important;
+    box-shadow: 0 20px 45px rgba(0, 240, 255, 0.2), 0 0 20px rgba(0, 240, 255, 0.12) !important;
+    z-index: 10;
 }
 
 .project-card-image-wrap {
