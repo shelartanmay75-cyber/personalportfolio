@@ -874,4 +874,115 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================
+    // CUSTOM COSMIC STARDUST CURSOR ENGINE
+    // ==========================================
+    const cursorDot = document.getElementById('custom-cursor-dot');
+    const cursorRing = document.getElementById('custom-cursor-ring');
+    const stardustContainer = document.getElementById('stardust-container');
+
+    if (cursorDot && cursorRing) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        let lastParticleTime = 0;
+
+        // Position update
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Instant dot update
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+
+            // Spawn stardust particle on movement
+            const now = Date.now();
+            if (now - lastParticleTime > 25) { // Throttled 25ms
+                lastParticleTime = now;
+                spawnStardustParticle(mouseX, mouseY);
+            }
+        });
+
+        // Smooth ring lerp loop
+        const renderCursor = () => {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+
+            cursorRing.style.left = `${ringX.toFixed(2)}px`;
+            cursorRing.style.top = `${ringY.toFixed(2)}px`;
+
+            requestAnimationFrame(renderCursor);
+        };
+        renderCursor();
+
+        // Stardust particle generator
+        const particleColors = ['#00f0ff', '#bd53ff', '#ffffff', '#00ffaa'];
+        const spawnStardustParticle = (x, y) => {
+            if (!stardustContainer) return;
+            const particle = document.createElement('div');
+            particle.className = 'stardust-particle';
+
+            const size = Math.random() * 2.5 + 1.2;
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+            const duration = (Math.random() * 0.5 + 0.5).toFixed(2);
+            const offsetX = (Math.random() * 16 - 8).toFixed(1);
+            const offsetY = (Math.random() * 16 - 8).toFixed(1);
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${x + parseFloat(offsetX)}px`;
+            particle.style.top = `${y + parseFloat(offsetY)}px`;
+            particle.style.backgroundColor = color;
+            particle.style.boxShadow = `0 0 6px ${color}`;
+            particle.style.setProperty('--duration', `${duration}s`);
+
+            stardustContainer.appendChild(particle);
+
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        };
+
+        // Click active state
+        window.addEventListener('mousedown', () => {
+            cursorRing.classList.add('cursor-active');
+            for (let i = 0; i < 5; i++) {
+                spawnStardustParticle(mouseX, mouseY);
+            }
+        });
+        window.addEventListener('mouseup', () => {
+            cursorRing.classList.remove('cursor-active');
+        });
+
+        // Interactive elements hover targeting
+        const interactiveElements = 'a, button, .project-carousel-card, .skill-planet, .contact-card, .btn-cta-primary, .btn-cta-secondary, .btn-terminal-enter, .btn-skills-toggle, .skill-card-new, .island, .carousel-arrow';
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(interactiveElements)) {
+                cursorRing.classList.add('cursor-hover');
+                cursorDot.classList.add('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest(interactiveElements)) {
+                cursorRing.classList.remove('cursor-hover');
+                cursorDot.classList.remove('cursor-hover');
+            }
+        });
+
+        // Hide when mouse leaves window
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorRing.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorRing.style.opacity = '1';
+        });
+    }
 });
