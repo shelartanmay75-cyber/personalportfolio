@@ -171,21 +171,21 @@ document.addEventListener('DOMContentLoaded', () => {
             textId: 'about-sth-text',
             checkId: 'about-sth-check',
             sectionId: 'about',
-            message: 'Generating About Section...',
+            message: 'Generating About Me section...',
         },
         {
             headerId: 'skills-terminal-header',
             textId: 'skills-sth-text',
             checkId: 'skills-sth-check',
             sectionId: 'skills',
-            message: 'Generating Skills...',
+            message: 'Generating Skills section...',
         },
         {
             headerId: 'projects-terminal-header',
             textId: 'projects-sth-text',
             checkId: 'projects-sth-check',
             sectionId: 'projects',
-            message: 'Generating Projects...',
+            message: 'Generating projects section...',
         },
     ];
 

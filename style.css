@@ -1688,13 +1688,13 @@ body.scroll-locked {
 
 .contact-card-btn {
     margin-top: 8px;
-    padding: 5px 16px;
+    padding: 6px 16px;
     border-radius: 20px;
-    border: 1.5px solid rgba(0, 0, 0, 0.15);
-    background: transparent;
+    border: 1px solid #0d0d0d;
+    background: #0d0d0d;
     font-size: 0.72rem;
     font-weight: 700;
-    color: #2d2d2d;
+    color: #ffffff;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
@@ -1703,22 +1703,18 @@ body.scroll-locked {
     text-transform: uppercase;
 }
 
-.contact-card-btn:hover {
-    background: #2d2d2d;
-    color: #fff;
-    border-color: #2d2d2d;
+.contact-card-btn:hover,
+.contact-card.featured .contact-card-btn:hover {
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
 }
 
 /* Featured card button */
 .contact-card.featured .contact-card-btn {
     background: #0d0d0d;
-    color: #fff;
+    color: #ffffff;
     border-color: #0d0d0d;
-}
-
-.contact-card.featured .contact-card-btn:hover {
-    background: #333;
-    border-color: #333;
 }
 
 /* Footer flame icon */
@@ -3369,13 +3365,13 @@ body.scroll-locked {
 
 .resume-download-btn {
     margin-top: 8px;
-    padding: 5px 16px;
+    padding: 6px 16px;
     border-radius: 20px;
-    border: 1.5px solid rgba(0, 0, 0, 0.15);
-    background: transparent;
+    border: 1px solid #0d0d0d;
+    background: #0d0d0d;
     font-size: 0.72rem;
     font-weight: 700;
-    color: #2d2d2d;
+    color: #ffffff;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -3387,9 +3383,9 @@ body.scroll-locked {
 
 .resume-premium-card:hover .resume-download-btn,
 .resume-download-btn:hover {
-    background: #2d2d2d;
-    color: #fff;
-    border-color: #2d2d2d;
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
     box-shadow: none;
 }
 
