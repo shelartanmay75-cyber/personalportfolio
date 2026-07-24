@@ -1839,9 +1839,9 @@ body.scroll-locked {
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    gap: 2rem;
+    gap: 2.5rem;
     width: 100%;
-    padding: 2rem 1rem;
+    padding: 3.5rem 1.5rem;
     scrollbar-width: none; /* Hide standard scrollbar Firefox */
 }
 
@@ -1855,14 +1855,14 @@ body.scroll-locked {
 }
 
 .project-carousel-card {
-    flex: 0 0 calc((100% - 4rem) / 3); /* 3 cards visible */
+    flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards visible */
     scroll-snap-align: start;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     overflow: hidden;
     backdrop-filter: blur(12px);
-    transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
                 border-color 0.4s ease,
                 box-shadow 0.4s ease;
     display: flex;
@@ -1897,7 +1897,7 @@ body.scroll-locked {
     opacity: 1;
 }
 
-/* Dynamic Card Focus & Dimming Effect */
+/* Dynamic Card Focus & Dramatic Pop Out Effect */
 .projects-carousel .project-carousel-card {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
                 opacity 0.4s ease,
@@ -1907,18 +1907,19 @@ body.scroll-locked {
 }
 
 .projects-carousel.has-active .project-carousel-card {
-    opacity: 0.45;
-    filter: brightness(0.7) blur(0.5px);
-    transform: scale(0.95);
+    opacity: 0.32;
+    filter: brightness(0.5) blur(1px);
+    transform: scale(0.88);
 }
 
 .projects-carousel.has-active .project-carousel-card.card-active,
 .projects-carousel .project-carousel-card:hover {
     opacity: 1 !important;
-    filter: brightness(1) blur(0px) !important;
-    border-color: rgba(0, 240, 255, 0.6) !important;
-    box-shadow: 0 25px 55px rgba(0, 240, 255, 0.22), 0 0 25px rgba(0, 240, 255, 0.15) !important;
-    z-index: 10;
+    filter: brightness(1.1) blur(0px) !important;
+    transform: scale(1.12) translateY(-14px) !important;
+    border-color: rgba(0, 240, 255, 0.85) !important;
+    box-shadow: 0 30px 70px rgba(0, 240, 255, 0.3), 0 0 35px rgba(0, 240, 255, 0.2) !important;
+    z-index: 15;
 }
 
 .project-card-image-wrap {

@@ -528,17 +528,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parallaxX = -((x - centerX) / centerX) * 8;
                 const parallaxY = -((y - centerY) / centerY) * 8;
 
-                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02) translateY(-6px)`;
+                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.12, 1.12, 1.12) translateY(-14px)`;
                 c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
                 c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
 
                 if (img) {
-                    img.style.transform = `scale(1.12) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
+                    img.style.transform = `scale(1.15) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
                 }
             });
 
             c.addEventListener('mouseleave', () => {
-                c.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0px)`;
+                c.style.transform = '';
                 c.style.setProperty('--glare-x', `50%`);
                 c.style.setProperty('--glare-y', `50%`);
                 if (img) {
@@ -547,25 +547,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Dynamic active-card detection on scroll (Center focus & dimming)
+        // Dynamic active-card detection on scroll (Edge snapping & Center focus)
         const updateActiveCard = () => {
             if (!carousel) return;
-            const carouselRect = carousel.getBoundingClientRect();
-            const carouselCenterX = carouselRect.left + carouselRect.width / 2;
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            const currentScroll = carousel.scrollLeft;
 
-            let minDistance = Infinity;
             let activeCard = null;
 
-            projectCards.forEach(card => {
-                const cardRect = card.getBoundingClientRect();
-                const cardCenterX = cardRect.left + cardRect.width / 2;
-                const distance = Math.abs(carouselCenterX - cardCenterX);
+            // Forced edge snapping: scrolled to start -> 1st card pops out
+            if (currentScroll <= 35) {
+                activeCard = projectCards[0];
+            }
+            // Forced edge snapping: scrolled to end -> last card pops out
+            else if (currentScroll >= maxScroll - 35) {
+                activeCard = projectCards[projectCards.length - 1];
+            }
+            // Otherwise pick card closest to container center
+            else {
+                const carouselRect = carousel.getBoundingClientRect();
+                const carouselCenterX = carouselRect.left + carouselRect.width / 2;
 
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    activeCard = card;
-                }
-            });
+                let minDistance = Infinity;
+
+                projectCards.forEach(card => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenterX = cardRect.left + cardRect.width / 2;
+                    const distance = Math.abs(carouselCenterX - cardCenterX);
+
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeCard = card;
+                    }
+                });
+            }
 
             if (activeCard) {
                 carousel.classList.add('has-active');
@@ -582,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (carousel) {
             carousel.addEventListener('scroll', updateActiveCard);
             window.addEventListener('resize', updateActiveCard);
-            setTimeout(updateActiveCard, 400);
+            setTimeout(updateActiveCard, 300);
         }
 
         // Hover override: focus hovered card and dim others
@@ -590,7 +605,11 @@ document.addEventListener('DOMContentLoaded', () => {
             c.addEventListener('mouseenter', () => {
                 if (carousel) carousel.classList.add('has-active');
                 projectCards.forEach(other => {
-                    if (other !== c) other.classList.remove('card-active');
+                    if (other === c) {
+                        other.classList.add('card-active');
+                    } else {
+                        other.classList.remove('card-active');
+                    }
                 });
             });
             c.addEventListener('mouseleave', () => {
