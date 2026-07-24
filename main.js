@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 c.appendChild(glare);
             }
 
-            const img = c.querySelector('.project-card-image');
+            const title = c.querySelector('.project-card-title');
 
             c.addEventListener('mousemove', (e) => {
                 const rect = c.getBoundingClientRect();
@@ -520,22 +520,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const maxTilt = 10;
+                const maxTilt = 12;
                 const rotateX = -((y - centerY) / centerY) * maxTilt;
                 const rotateY = ((x - centerX) / centerX) * maxTilt;
 
                 const glareX = (x / rect.width) * 100;
                 const glareY = (y / rect.height) * 100;
 
-                const parallaxX = -((x - centerX) / centerX) * 8;
-                const parallaxY = -((y - centerY) / centerY) * 8;
+                const parallaxX = -((x - centerX) / centerX) * 10;
+                const parallaxY = -((y - centerY) / centerY) * 10;
 
                 c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.05, 1.05, 1.05) translateY(-4px)`;
                 c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
                 c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
 
                 if (img) {
-                    img.style.transform = `scale(1.08) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
+                    img.style.transform = `scale(1.12) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 18px)`;
+                }
+                if (title) {
+                    title.style.transform = `translate3d(${-parallaxX.toFixed(1) * 0.4}px, ${-parallaxY.toFixed(1) * 0.4}px, 10px)`;
                 }
             });
 
@@ -543,9 +546,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 c.style.transform = '';
                 c.style.setProperty('--glare-x', `50%`);
                 c.style.setProperty('--glare-y', `50%`);
-                if (img) {
-                    img.style.transform = `scale(1) translate3d(0px, 0px, 0px)`;
-                }
+                if (img) img.style.transform = '';
+                if (title) title.style.transform = '';
             });
         });
 
