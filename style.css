@@ -1608,8 +1608,8 @@ body.scroll-locked {
 
 /* Highlighted card (LinkedIn) */
 .contact-card.featured {
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     transform: scale(1.04);
 }
 
@@ -3343,25 +3343,24 @@ body.scroll-locked {
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    border: 1px solid rgba(170, 255, 0, 0.2) !important;
-    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
     transition: var(--transition), box-shadow 0.4s ease !important;
 }
 
 .resume-card-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(170,255,0,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
 .resume-premium-card:hover {
-    transform: translateY(-8px) !important;
-    border-color: rgba(170, 255, 0, 0.5) !important;
-    box-shadow: 0 12px 35px rgba(170, 255, 0, 0.15),
-                0 0 0 1px rgba(170,255,0,0.1) !important;
+    transform: translateY(-6px) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
 }
 
 .resume-premium-card:hover .resume-card-glow {
@@ -3370,26 +3369,28 @@ body.scroll-locked {
 
 .resume-download-btn {
     margin-top: 8px;
-    padding: 7px 16px;
+    padding: 5px 16px;
     border-radius: 20px;
-    border: 1.5px solid rgba(170,255,0,0.4);
-    background: rgba(170,255,0,0.08);
-    font-size: 0.78rem;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: var(--accent);
+    color: #2d2d2d;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     letter-spacing: 0.3px;
+    text-transform: uppercase;
     transition: var(--transition);
 }
 
-.resume-premium-card:hover .resume-download-btn {
-    background: var(--accent);
-    color: #0d0d0d;
-    border-color: var(--accent);
-    box-shadow: 0 4px 15px rgba(170,255,0,0.3);
+.resume-premium-card:hover .resume-download-btn,
+.resume-download-btn:hover {
+    background: #2d2d2d;
+    color: #fff;
+    border-color: #2d2d2d;
+    box-shadow: none;
 }
 
 /* ==========================================================================
