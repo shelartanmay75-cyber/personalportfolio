@@ -1821,7 +1821,7 @@ body.scroll-locked {
    FEATURED PROJECTS SECTION - NETFLIX CAROUSEL
    ========================================================================== */
 .projects-carousel-section {
-    padding: 100px 1rem;
+    padding: 70px 1rem;
     overflow: hidden;
     background: #0d0d0d;
 }
@@ -1839,12 +1839,12 @@ body.scroll-locked {
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    gap: 2.5rem;
+    gap: 2rem;
     width: 100%;
     /* Center-aligned padding so 1st, middle, and last cards land dead-center */
-    padding: 2.5rem calc(50% - 190px);
+    padding: 2rem calc(50% - 175px);
     scrollbar-width: none; /* Hide standard scrollbar Firefox */
-    perspective: 1200px;
+    perspective: 1000px;
 }
 
 .projects-carousel::-webkit-scrollbar {
@@ -1852,7 +1852,7 @@ body.scroll-locked {
 }
 
 .project-carousel-card {
-    flex: 0 0 380px; /* Fixed elegant card size for accurate centering */
+    flex: 0 0 350px; /* Fixed elegant card size that fits screen height cleanly */
     max-width: 85vw;
     scroll-snap-align: center; /* Center snap! */
     scroll-snap-stop: always;
@@ -1882,10 +1882,10 @@ body.scroll-locked {
     inset: 0;
     pointer-events: none;
     border-radius: 20px;
-    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.35) 0%, rgba(0, 240, 255, 0.18) 30%, rgba(189, 83, 255, 0.1) 55%, transparent 75%);
+    background: radial-gradient(circle 280px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.45) 0%, rgba(0, 240, 255, 0.22) 35%, transparent 75%);
     opacity: 0;
     mix-blend-mode: overlay;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.3s ease;
     z-index: 5;
 }
 
@@ -1894,34 +1894,34 @@ body.scroll-locked {
     opacity: 1;
 }
 
-/* Dynamic Card Focus & Receding Pop-Out Effect (No Screen Clipping) */
+/* Dynamic Card Focus & Receding Pop-Out Effect (Fits Display Screen Cleanly) */
 .projects-carousel .project-carousel-card {
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                opacity 0.4s ease,
-                filter 0.4s ease,
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 0.35s ease,
+                filter 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
 }
 
 .projects-carousel.has-active .project-carousel-card {
     opacity: 0.35;
     filter: brightness(0.55) blur(0.5px);
-    transform: scale(0.88);
+    transform: scale(0.9);
 }
 
 .projects-carousel.has-active .project-carousel-card.card-active,
 .projects-carousel .project-carousel-card:hover {
     opacity: 1 !important;
     filter: brightness(1.05) blur(0px) !important;
-    transform: scale(1.05) translateY(-4px) !important;
-    border-color: rgba(0, 240, 255, 0.7) !important;
-    box-shadow: 0 20px 45px rgba(0, 240, 255, 0.2), 0 0 25px rgba(0, 240, 255, 0.12) !important;
+    transform: scale(1.04) !important;
+    border-color: rgba(0, 240, 255, 0.75) !important;
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.22), 0 0 20px rgba(0, 240, 255, 0.12) !important;
     z-index: 10;
 }
 
 .project-card-image-wrap {
     position: relative;
-    height: 220px;
+    height: 190px;
     width: 100%;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
