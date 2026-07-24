@@ -546,6 +546,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Dynamic active-card detection on scroll (Center focus & dimming)
+        const updateActiveCard = () => {
+            if (!carousel) return;
+            const carouselRect = carousel.getBoundingClientRect();
+            const carouselCenterX = carouselRect.left + carouselRect.width / 2;
+
+            let minDistance = Infinity;
+            let activeCard = null;
+
+            projectCards.forEach(card => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const distance = Math.abs(carouselCenterX - cardCenterX);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeCard = card;
+                }
+            });
+
+            if (activeCard) {
+                carousel.classList.add('has-active');
+                projectCards.forEach(c => {
+                    if (c === activeCard) {
+                        c.classList.add('card-active');
+                    } else {
+                        c.classList.remove('card-active');
+                    }
+                });
+            }
+        };
+
+        if (carousel) {
+            carousel.addEventListener('scroll', updateActiveCard);
+            window.addEventListener('resize', updateActiveCard);
+            setTimeout(updateActiveCard, 400);
+        }
+
+        // Hover override: focus hovered card and dim others
+        projectCards.forEach(c => {
+            c.addEventListener('mouseenter', () => {
+                if (carousel) carousel.classList.add('has-active');
+                projectCards.forEach(other => {
+                    if (other !== c) other.classList.remove('card-active');
+                });
+            });
+            c.addEventListener('mouseleave', () => {
+                updateActiveCard();
+            });
+        });
     }
 
     // ==========================================
