@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(checkArrows, 500);
     }
 
-    // Viewport fade-in for project cards
+    // Viewport fade-in for project cards & 3D Holographic Tilt Reaction
     const projectCards = document.querySelectorAll('.project-carousel-card');
     if (projectCards.length > 0) {
         const cardObs = new IntersectionObserver((entries) => {
@@ -498,7 +498,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-        projectCards.forEach(c => cardObs.observe(c));
+
+        projectCards.forEach(c => {
+            cardObs.observe(c);
+
+            // Add dynamic 3D Holographic Glare overlay
+            if (!c.querySelector('.project-card-glare')) {
+                const glare = document.createElement('div');
+                glare.className = 'project-card-glare';
+                c.appendChild(glare);
+            }
+
+            const img = c.querySelector('.project-card-image');
+
+            c.addEventListener('mousemove', (e) => {
+                const rect = c.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const maxTilt = 10;
+                const rotateX = -((y - centerY) / centerY) * maxTilt;
+                const rotateY = ((x - centerX) / centerX) * maxTilt;
+
+                const glareX = (x / rect.width) * 100;
+                const glareY = (y / rect.height) * 100;
+
+                const parallaxX = -((x - centerX) / centerX) * 8;
+                const parallaxY = -((y - centerY) / centerY) * 8;
+
+                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02) translateY(-6px)`;
+                c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
+                c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
+
+                if (img) {
+                    img.style.transform = `scale(1.12) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 15px)`;
+                }
+            });
+
+            c.addEventListener('mouseleave', () => {
+                c.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0px)`;
+                c.style.setProperty('--glare-x', `50%`);
+                c.style.setProperty('--glare-y', `50%`);
+                if (img) {
+                    img.style.transform = `scale(1) translate3d(0px, 0px, 0px)`;
+                }
+            });
+        });
     }
 
     // ==========================================

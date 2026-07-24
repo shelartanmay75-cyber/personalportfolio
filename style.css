@@ -1850,6 +1850,10 @@ body.scroll-locked {
 }
 
 /* Base Card Styles */
+.projects-carousel {
+    perspective: 1200px;
+}
+
 .project-carousel-card {
     flex: 0 0 calc((100% - 4rem) / 3); /* 3 cards visible */
     scroll-snap-align: start;
@@ -1858,14 +1862,15 @@ body.scroll-locked {
     border-radius: 20px;
     overflow: hidden;
     backdrop-filter: blur(12px);
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-                border-color 0.5s ease,
-                box-shadow 0.5s ease;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
     opacity: 0;
+    transform-style: preserve-3d;
     transform: translateY(30px);
 }
 
@@ -1875,11 +1880,27 @@ body.scroll-locked {
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
 }
 
+/* Dynamic Holographic Glare Overlay */
+.project-card-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 20px;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.25) 0%, rgba(0, 240, 255, 0.1) 35%, transparent 70%);
+    opacity: 0;
+    mix-blend-mode: overlay;
+    transition: opacity 0.4s ease;
+    z-index: 5;
+}
+
+.project-carousel-card:hover .project-card-glare {
+    opacity: 1;
+}
+
 /* Hover Animations */
 .project-carousel-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.15);
+    border-color: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 240, 255, 0.18), 0 0 20px rgba(0, 240, 255, 0.1);
 }
 
 .project-card-image-wrap {
@@ -1888,13 +1909,15 @@ body.scroll-locked {
     width: 100%;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transform-style: preserve-3d;
 }
 
 .project-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.2s ease-out;
+    will-change: transform;
 }
 
 .project-carousel-card:hover .project-card-image {
