@@ -1821,9 +1821,19 @@ body.scroll-locked {
    FEATURED PROJECTS SECTION - NETFLIX CAROUSEL
    ========================================================================== */
 .projects-carousel-section {
-    padding: 70px 1rem;
+    padding: 40px 1rem;
     overflow: hidden;
     background: #0d0d0d;
+}
+
+.projects-header .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.projects-header .section-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
 .carousel-container-wrapper {
@@ -1831,7 +1841,7 @@ body.scroll-locked {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
 }
 
 .projects-carousel {
@@ -1839,10 +1849,10 @@ body.scroll-locked {
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    gap: 2rem;
+    gap: 1.8rem;
     width: 100%;
     /* Center-aligned padding so 1st, middle, and last cards land dead-center */
-    padding: 2rem calc(50% - 175px);
+    padding: 1rem calc(50% - 165px);
     scrollbar-width: none; /* Hide standard scrollbar Firefox */
     perspective: 1000px;
 }
@@ -1852,18 +1862,17 @@ body.scroll-locked {
 }
 
 .project-carousel-card {
-    flex: 0 0 350px; /* Fixed elegant card size that fits screen height cleanly */
+    flex: 0 0 330px; /* Ultra-compact card size that fits any screen height 100% */
     max-width: 85vw;
     scroll-snap-align: center; /* Center snap! */
     scroll-snap-stop: always;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
     backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;
-    height: 100%;
     position: relative;
     opacity: 0;
     transform-style: preserve-3d;
@@ -1881,8 +1890,8 @@ body.scroll-locked {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    border-radius: 20px;
-    background: radial-gradient(circle 260px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(0, 240, 255, 0.05) 40%, transparent 75%);
+    border-radius: 18px;
+    background: radial-gradient(circle 240px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(0, 240, 255, 0.05) 40%, transparent 75%);
     opacity: 0;
     mix-blend-mode: overlay;
     transition: opacity 0.3s ease;
@@ -1913,15 +1922,15 @@ body.scroll-locked {
 .projects-carousel .project-carousel-card:hover {
     opacity: 1 !important;
     filter: brightness(1.05) blur(0px) !important;
-    transform: scale(1.04);
+    transform: scale(1.03);
     border-color: rgba(0, 240, 255, 0.75) !important;
-    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.22), 0 0 20px rgba(0, 240, 255, 0.12) !important;
+    box-shadow: 0 12px 35px rgba(0, 240, 255, 0.22), 0 0 15px rgba(0, 240, 255, 0.12) !important;
     z-index: 10;
 }
 
 .project-card-image-wrap {
     position: relative;
-    height: 190px;
+    height: 150px;
     width: 100%;
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1942,15 +1951,15 @@ body.scroll-locked {
 
 .project-card-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 6px 12px;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     backdrop-filter: blur(8px);
 }
 
@@ -1967,7 +1976,7 @@ body.scroll-locked {
 }
 
 .project-card-content {
-    padding: 1.8rem;
+    padding: 1.1rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -1975,52 +1984,55 @@ body.scroll-locked {
 
 .project-meta {
     display: flex;
-    gap: 1.2rem;
-    margin-bottom: 0.8rem;
-    font-size: 0.8rem;
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
 }
 
 .project-meta-item {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
 }
 
 .project-card-title {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.4rem;
     color: var(--text-main);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
 }
 
 .project-card-desc {
-    font-size: 0.92rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .project-features-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 1.8rem;
+    gap: 4px;
+    margin-bottom: 0.9rem;
 }
 
 .project-features-badges .badge {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-muted);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
 }
 
 .project-carousel-card:hover .project-features-badges .badge {

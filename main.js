@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parallaxX = -((x - centerX) / centerX) * 10;
                 const parallaxY = -((y - centerY) / centerY) * 10;
 
-                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.04)`;
+                c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.03)`;
                 c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
                 c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
 
