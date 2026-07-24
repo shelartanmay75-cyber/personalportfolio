@@ -1913,7 +1913,7 @@ body.scroll-locked {
 .projects-carousel .project-carousel-card:hover {
     opacity: 1 !important;
     filter: brightness(1.05) blur(0px) !important;
-    transform: scale(1.04) !important;
+    transform: scale(1.04);
     border-color: rgba(0, 240, 255, 0.75) !important;
     box-shadow: 0 15px 40px rgba(0, 240, 255, 0.22), 0 0 20px rgba(0, 240, 255, 0.12) !important;
     z-index: 10;
