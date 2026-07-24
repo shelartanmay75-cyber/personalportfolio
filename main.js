@@ -522,25 +522,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const maxTilt = 12;
+                const maxTilt = 14;
                 const rotateX = -((y - centerY) / centerY) * maxTilt;
                 const rotateY = ((x - centerX) / centerX) * maxTilt;
 
                 const glareX = (x / rect.width) * 100;
                 const glareY = (y / rect.height) * 100;
 
-                const parallaxX = -((x - centerX) / centerX) * 10;
-                const parallaxY = -((y - centerY) / centerY) * 10;
+                const parallaxX = -((x - centerX) / centerX) * 8;
+                const parallaxY = -((y - centerY) / centerY) * 8;
 
                 c.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.04)`;
                 c.style.setProperty('--glare-x', `${glareX.toFixed(1)}%`);
                 c.style.setProperty('--glare-y', `${glareY.toFixed(1)}%`);
 
                 if (img) {
-                    img.style.transform = `scale(1.12) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 18px)`;
+                    img.style.transform = `scale(1.08) translate3d(${parallaxX.toFixed(1)}px, ${parallaxY.toFixed(1)}px, 12px)`;
                 }
                 if (title) {
-                    title.style.transform = `translate3d(${-parallaxX.toFixed(1) * 0.4}px, ${-parallaxY.toFixed(1) * 0.4}px, 10px)`;
+                    title.style.transform = `translate3d(${-parallaxX.toFixed(1) * 0.3}px, ${-parallaxY.toFixed(1) * 0.3}px, 6px)`;
                 }
             });
 

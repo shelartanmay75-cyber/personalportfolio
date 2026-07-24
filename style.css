@@ -1876,13 +1876,13 @@ body.scroll-locked {
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
 }
 
-/* Dynamic Holographic Glare Overlay */
+/* Dynamic Holographic Glare Overlay (Subtle & Dimmed Sheen) */
 .project-card-glare {
     position: absolute;
     inset: 0;
     pointer-events: none;
     border-radius: 20px;
-    background: radial-gradient(circle 280px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.45) 0%, rgba(0, 240, 255, 0.22) 35%, transparent 75%);
+    background: radial-gradient(circle 260px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(0, 240, 255, 0.05) 40%, transparent 75%);
     opacity: 0;
     mix-blend-mode: overlay;
     transition: opacity 0.3s ease;
@@ -1896,7 +1896,7 @@ body.scroll-locked {
 
 /* Dynamic Card Focus & Receding Pop-Out Effect (Fits Display Screen Cleanly) */
 .projects-carousel .project-carousel-card {
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    transition: transform 0.1s cubic-bezier(0.1, 0, 0.1, 1),
                 opacity 0.35s ease,
                 filter 0.35s ease,
                 border-color 0.35s ease,
